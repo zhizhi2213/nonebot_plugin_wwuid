@@ -1,0 +1,15 @@
+# nonebot-plugin-WWuid 项目依赖
+# 使用方法: pip install -r requirements.txt
+
+nonebot2>=2.0.0
+nonebot-adapter-onebot>=2.0.0
+nonebot-plugin-alconna
+nonebot-plugin-htmlrender
+nonebot-plugin-apscheduler
+nonebot-plugin-uninfo
+nonebot-plugin-orm[sqlite]>=0.7.0
+httpx
+pandas
+beautifulsoup4
+lxml
+Pillow

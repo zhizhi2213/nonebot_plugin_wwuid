@@ -1,0 +1,23 @@
+# pyproject.toml 示例
+# 如果你的项目中已经有这个文件，只需要在 dependencies 部分添加对应的依赖
+
+[project]
+name = "nonebot-plugin-WWwiki"
+version = "1.0.0"
+description = "鸣潮wiki查询插件"
+dependencies = [
+    "nonebot2>=2.0.0",
+    "nonebot-adapter-onebot>=2.0.0",
+    "nonebot-plugin-alconna",
+    "nonebot-plugin-htmlrender",
+    "nonebot-plugin-apscheduler",
+    "nonebot-plugin-uninfo",
+    "nonebot-plugin-orm[sqlite]>=0.7.0",  # 新增：ORM 数据库插件
+    "httpx",
+    "pandas",
+    "beautifulsoup4",
+]
+
+# 如果你使用 poetry 管理依赖，格式会略有不同
+# 如果你使用 requirements.txt，在那个文件中添加：
+# nonebot-plugin-orm[sqlite]>=0.7.0
