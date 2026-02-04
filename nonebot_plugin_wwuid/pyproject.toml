@@ -12,10 +12,20 @@ dependencies = [
     "nonebot-plugin-htmlrender",
     "nonebot-plugin-apscheduler",
     "nonebot-plugin-uninfo",
-    "nonebot-plugin-orm[sqlite]>=0.7.0",  # 新增：ORM 数据库插件
-    "httpx",
+    "nonebot-plugin-orm[sqlite]>=0.7.0",
+    "httpx>=0.24.0",
+    "pydantic>=2.0.0",
     "pandas",
     "beautifulsoup4",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-mock>=3.10.0",
+    "pytest-cov>=4.0.0",
+    "httpx>=0.24.0",
 ]
 
 # 如果你使用 poetry 管理依赖，格式会略有不同
