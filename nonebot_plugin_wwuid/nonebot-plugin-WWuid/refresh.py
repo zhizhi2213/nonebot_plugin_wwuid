@@ -49,9 +49,12 @@ class RefreshManager:
             return False, error_reply(WAVES_CODE_102)
         
         ck, did = ck_result
-        role_id = await self._get_user_role_id(user_id, ck)
-        if not role_id:
+        
+        user_binds = await self._get_user_binds(user_id)
+        if not user_binds:
             return False, error_reply(WAVES_CODE_102)
+        
+        role_id = user_binds[0].game_uid
         
         try:
             await self.api.login_log(role_id, ck)
@@ -149,9 +152,12 @@ class RefreshManager:
             return False, error_reply(WAVES_CODE_102)
         
         ck, did = ck_result
-        role_id = await self._get_user_role_id(user_id, ck)
-        if not role_id:
+        
+        user_binds = await self._get_user_binds(user_id)
+        if not user_binds:
             return False, error_reply(WAVES_CODE_102)
+        
+        role_id = user_binds[0].game_uid
         
         try:
             await self.api.login_log(role_id, ck)
@@ -199,20 +205,21 @@ class RefreshManager:
                 return row[0], row[1]
             return None
     
-    async def _get_user_role_id(self, user_id: str, ck: str) -> Optional[str]:
-        """获取用户游戏角色ID"""
-        try:
-            base_info_response = await self.api.get_base_info("0", ck)
-            if base_info_response.success:
-                data = base_info_response.data
-                if data and "roleBoxBaseData" in data:
-                    base_data = data["roleBoxBaseData"]
-                    if base_data and len(base_data) > 0:
-                        return str(base_data[0].get("roleId", "0"))
-            return None
-        except Exception as e:
-            logger.error(f"获取用户角色ID失败: {e}")
-            return None
+    async def _get_user_binds(self, user_id: str) -> List[WutheringWavesBind]:
+        """获取用户的所有绑定记录
+        
+        Returns:
+            List[WutheringWavesBind]: 用户绑定列表
+        """
+        async with get_session() as session:
+            result = await session.execute(
+                select(WutheringWavesBind).where(
+                    WutheringWavesBind.user_id == user_id,
+                    WutheringWavesBind.game_id == 3,
+                    WutheringWavesBind.status != "无效"
+                )
+            )
+            return list(result.scalars().all())
     
     async def get_cached_role_list(self, user_id: str) -> Optional[List[Role]]:
         """获取缓存的角色列表"""

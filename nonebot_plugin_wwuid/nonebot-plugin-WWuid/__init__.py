@@ -1,7 +1,7 @@
 from nonebot.plugin import PluginMetadata, inherit_supported_adapters
 
 # 【新增】导入 CK 绑定功能
-from .bind import bind_ck, query_bind, unbind_ck
+from .bind import bind_ck, query_bind_cmd, delete_ck_cmd
 
 # 【新增】导入角色练度功能
 from .refresh import get_refresh_manager
