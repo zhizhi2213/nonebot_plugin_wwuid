@@ -5,7 +5,7 @@
 import json
 import random
 import string
-from typing import Dict, Any, Optional, List
+from typing import Dict, Any, Optional, List, Tuple
 from datetime import datetime
 
 import httpx
@@ -15,6 +15,7 @@ from .errors import (
     WAVES_CODE_102,
     WAVES_CODE_999,
 )
+from .constants import WAVES_GAME_ID
 
 
 class WavesApiResponse:
@@ -112,6 +113,38 @@ class WavesApi:
         headers = self._get_headers(cookie, role_id)
         headers["version"] = "1.0"
         return await self._request(url, method="POST", headers=headers)
+    
+    async def get_kuro_role_list(self, cookie: str, did: str = "", game_id: int = WAVES_GAME_ID) -> WavesApiResponse:
+        """获取库洛角色列表"""
+        url = f"{self.MAIN_URL}/gamer/role/list"
+        headers = self._get_headers(cookie, "")
+        if did:
+            headers["devCode"] = did
+        
+        data = {"gameId": game_id}
+        
+        return await self._request(url, method="POST", data=data, headers=headers)
+    
+    async def get_request_token(self, role_id: str, cookie: str, did: str = "", server_id: Optional[str] = None) -> Tuple[bool, str]:
+        """请求访问令牌"""
+        url = f"{self.MAIN_URL}/aki/roleBox/requestToken"
+        headers = self._get_headers(cookie, role_id)
+        headers["did"] = did
+        headers["b-at"] = ""
+        
+        data = {
+            "gameId": WAVES_GAME_ID,
+            "serverId": server_id or self._get_server_id(role_id),
+            "roleId": role_id,
+        }
+        
+        response = await self._request(url, method="POST", data=data, headers=headers)
+        
+        if response.success and isinstance(response.data, dict):
+            if access_token := response.data.get("accessToken", ""):
+                return True, access_token
+        
+        return False, ""
     
     async def get_base_info(self, role_id: str, cookie: str) -> WavesApiResponse:
         """获取账户基础信息"""

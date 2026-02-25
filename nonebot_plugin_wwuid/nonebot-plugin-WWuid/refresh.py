@@ -9,6 +9,8 @@ from datetime import datetime
 from nonebot import logger
 from nonebot_plugin_orm import get_session
 
+from sqlalchemy import select
+
 from .waves_api import WavesApi, WavesApiResponse
 from .models import (
     WutheringWavesBind,
@@ -42,10 +44,11 @@ class RefreshManager:
         """
         logger.info(f"用户 {user_id} 请求刷新所有角色数据")
         
-        ck = await self._get_user_ck(user_id)
-        if not ck:
+        ck_result = await self._get_user_ck(user_id)
+        if not ck_result:
             return False, error_reply(WAVES_CODE_102)
         
+        ck, did = ck_result
         role_id = await self._get_user_role_id(user_id, ck)
         if not role_id:
             return False, error_reply(WAVES_CODE_102)
@@ -141,10 +144,11 @@ class RefreshManager:
         if not role_id_by_name:
             return False, f"❌ 未找到角色: {role_name}"
         
-        ck = await self._get_user_ck(user_id)
-        if not ck:
+        ck_result = await self._get_user_ck(user_id)
+        if not ck_result:
             return False, error_reply(WAVES_CODE_102)
         
+        ck, did = ck_result
         role_id = await self._get_user_role_id(user_id, ck)
         if not role_id:
             return False, error_reply(WAVES_CODE_102)
@@ -177,16 +181,22 @@ class RefreshManager:
             logger.error(f"刷新角色 {role_name} 时发生错误: {e}")
             return False, f"❌ 刷新失败: {str(e)}"
     
-    async def _get_user_ck(self, user_id: str) -> Optional[str]:
-        """获取用户CK"""
+    async def _get_user_ck(self, user_id: str) -> Optional[Tuple[str, str]]:
+        """获取用户CK和did
+        
+        Returns:
+            Tuple[str, str]: (cookie, did) 或 None
+        """
         async with get_session() as session:
             result = await session.execute(
-                "SELECT waves_ck FROM wuthering_waves_bind WHERE user_id = ?",
-                (user_id,)
+                select(WutheringWavesBind.cookie, WutheringWavesBind.did).where(
+                    WutheringWavesBind.user_id == user_id,
+                    WutheringWavesBind.game_id == 3
+                ).limit(1)
             )
             row = result.fetchone()
             if row:
-                return row[0]
+                return row[0], row[1]
             return None
     
     async def _get_user_role_id(self, user_id: str, ck: str) -> Optional[str]:

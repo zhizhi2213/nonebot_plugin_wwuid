@@ -25,7 +25,7 @@ def test_game_uid():
 @pytest.fixture
 def test_ck():
     """测试CK（仅用于测试）"""
-    return "test_cookie_1234567890abcdef"
+    return "eyJhbGciOiJIUzI1NiJ9.eyJjcmVhdGVkIjoxNzY1Nzg5NTMwMTY5LCJ1c2VySWQiOjEwMTYxNDU5fQ.o1mRTSxIno5L8AE_Ygxft_VXEU7sc_DJj2BsJYW0lsI"
 
 
 @pytest.fixture

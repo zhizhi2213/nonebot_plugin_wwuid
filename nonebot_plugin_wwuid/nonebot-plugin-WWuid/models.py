@@ -5,7 +5,7 @@
 from datetime import datetime
 from typing import List, Optional, Dict, Any
 from nonebot_plugin_orm import Model
-from sqlalchemy import String, DateTime
+from sqlalchemy import String, DateTime, Integer, Boolean
 from sqlalchemy.orm import Mapped, mapped_column
 from pydantic import BaseModel, Field, field_validator
 
@@ -17,13 +17,37 @@ class WutheringWavesBind(Model):
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     
     # 用户QQ号，唯一索引（一个QQ只能绑定一个游戏账号）
-    user_id: Mapped[str] = mapped_column(String(20), unique=True, index=True)
+    user_id: Mapped[str] = mapped_column(String(20), index=True)
+    
+    # 机器人ID
+    bot_id: Mapped[str] = mapped_column(String(50), default="")
     
     # 游戏UID
     game_uid: Mapped[str] = mapped_column(String(50))
     
     # 游戏Cookie/Token
     cookie: Mapped[str] = mapped_column(String(500))
+    
+    # did（设备ID，32/36/40位）
+    did: Mapped[str] = mapped_column(String(50), default="")
+    
+    # bat令牌
+    bat: Mapped[str] = mapped_column(String(200), default="")
+    
+    # 状态（空=有效，"无效"=失效）
+    status: Mapped[str] = mapped_column(String(20), default="")
+    
+    # 游戏ID（3=鸣潮，2=战双）
+    game_id: Mapped[int] = mapped_column(default=3)
+    
+    # 是否waves登录
+    is_login: Mapped[bool] = mapped_column(default=False)
+    
+    # 平台信息
+    platform: Mapped[str] = mapped_column(String(50), default="")
+    
+    # 群组ID（用于记录在哪个群绑定）
+    group_id: Mapped[str] = mapped_column(String(100), default="")
     
     # 别名：waves_ck（用于新功能）
     @property
