@@ -28,7 +28,8 @@ class WavesApiResponse:
     
     @property
     def success(self) -> bool:
-        return self.code == 0
+        # 库洛API返回200或0都表示成功
+        return self.code == 0 or self.code == 200
     
     def throw_msg(self) -> str:
         return self.message or f"错误代码: {self.code}"
@@ -62,13 +63,30 @@ class WavesApi:
             pass
         return self.SERVER_ID
     
-    def _get_headers(self, cookie: str, role_id: str) -> Dict[str, str]:
+    def _get_headers(self, cookie: str = "", role_id: str = "", is_community: bool = False, dev_code: str = "") -> Dict[str, str]:
         """构建请求头"""
-        return {
-            "Content-Type": "application/json",
-            "token": cookie,
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+        platform_source = "ios"
+        user_agent = (
+            "Mozilla/5.0 (iPhone; CPU iPhone OS 18_6 like Mac OS X) "
+            "AppleWebKit/605.1.15 (KHTML, like Gecko)  KuroGameBox/2.10.0"
+        )
+        
+        headers = {
+            "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
+            "source": platform_source,
+            "User-Agent": user_agent,
         }
+        
+        if cookie:
+            headers["token"] = cookie
+        
+        if dev_code:
+            headers["devCode"] = dev_code
+        
+        if is_community:
+            headers["version"] = "2.10.0"
+        
+        return headers
     
     async def _request(
         self,
@@ -80,10 +98,15 @@ class WavesApi:
     ) -> WavesApiResponse:
         """统一请求方法"""
         try:
+            content_type = headers.get("Content-Type", "") if headers else ""
+            
             if method.upper() == "GET":
                 response = await self.client.get(url, headers=headers)
             else:
-                response = await self.client.post(url, json=data, headers=headers)
+                if "application/x-www-form-urlencoded" in content_type:
+                    response = await self.client.post(url, data=data, headers=headers)
+                else:
+                    response = await self.client.post(url, json=data, headers=headers)
             
             result = response.json()
             
@@ -117,9 +140,7 @@ class WavesApi:
     async def get_kuro_role_list(self, cookie: str, did: str = "", game_id: int = WAVES_GAME_ID) -> WavesApiResponse:
         """获取库洛角色列表"""
         url = f"{self.MAIN_URL}/gamer/role/list"
-        headers = self._get_headers(cookie, "")
-        if did:
-            headers["devCode"] = did
+        headers = self._get_headers(cookie=cookie, is_community=True, dev_code=did)
         
         data = {"gameId": game_id}
         
@@ -128,7 +149,7 @@ class WavesApi:
     async def get_request_token(self, role_id: str, cookie: str, did: str = "", server_id: Optional[str] = None) -> Tuple[bool, str]:
         """请求访问令牌"""
         url = f"{self.MAIN_URL}/aki/roleBox/requestToken"
-        headers = self._get_headers(cookie, role_id)
+        headers = self._get_headers(cookie=cookie, is_community=True)
         headers["did"] = did
         headers["b-at"] = ""
         
@@ -140,11 +161,18 @@ class WavesApi:
         
         response = await self._request(url, method="POST", data=data, headers=headers)
         
-        if response.success and isinstance(response.data, dict):
-            if access_token := response.data.get("accessToken", ""):
-                return True, access_token
+        if response.success:
+            data = response.data
+            # data可能是字符串JSON，需要解析
+            if isinstance(data, str) and data:
+                try:
+                    data = json.loads(data)
+                except json.JSONDecodeError:
+                    pass
+            if isinstance(data, dict) and "accessToken" in data:
+                return True, data.get("accessToken", "")
         
-        return False, ""
+        return False, response.message or "获取token失败"
     
     async def get_base_info(self, role_id: str, cookie: str) -> WavesApiResponse:
         """获取账户基础信息"""

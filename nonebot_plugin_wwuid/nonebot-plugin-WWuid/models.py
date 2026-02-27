@@ -64,6 +64,73 @@ class WutheringWavesBind(Model):
         onupdate=datetime.now
     )
 
+    @classmethod
+    async def update_token_by_login(
+        cls,
+        uid: str,
+        game_id: int,
+        new_token: str,
+        new_did: str,
+        active_days: int = 30,
+    ):
+        """根据uid和game_id查找记录，如果is_login为True且在活跃天数内则更新cookie和did"""
+        from nonebot_plugin_orm import get_session
+        from datetime import datetime, timedelta
+        from sqlalchemy import select, and_
+        import time
+
+        current_time = int(time.time())
+        threshold_time = current_time - (active_days * 24 * 60 * 60)
+
+        async with get_session() as session:
+            stmt = select(cls).where(
+                and_(
+                    cls.game_uid == uid,
+                    cls.game_id == game_id,
+                    cls.is_login == True,
+                    cls.create_time != None,
+                )
+            )
+            result = await session.execute(stmt)
+            users = result.scalars().all()
+
+            updated_count = 0
+            for user in users:
+                create_timestamp = int(user.create_time.timestamp())
+                if create_timestamp >= threshold_time:
+                    user.cookie = new_token
+                    user.did = new_did
+                    user.update_time = datetime.now()
+                    updated_count += 1
+
+            await session.commit()
+            return updated_count
+
+    @classmethod
+    async def delete_all_invalid_cookie(cls, game_id: int = 3) -> int:
+        """删除所有status为'无效'的cookie记录"""
+        from nonebot_plugin_orm import get_session
+        from sqlalchemy import select, delete
+
+        async with get_session() as session:
+            stmt = select(cls).where(
+                cls.status == "无效",
+                cls.game_id == game_id
+            )
+            result = await session.execute(stmt)
+            invalid_cookies = result.scalars().all()
+
+            if not invalid_cookies:
+                return 0
+
+            del_count = 0
+            for cookie in invalid_cookies:
+                await session.delete(cookie)
+                del_count += 1
+
+            await session.commit()
+            return del_count
+
 
 # ==================== 鸣潮角色数据模型 ====================
 

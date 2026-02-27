@@ -113,9 +113,10 @@ class TestWavesApi:
         
         headers = api._get_headers("test_cookie", "123456789")
         
-        assert headers["Content-Type"] == "application/json"
+        assert headers["Content-Type"] == "application/x-www-form-urlencoded; charset=utf-8"
         assert headers["token"] == "test_cookie"
         assert "User-Agent" in headers
+        assert "source" in headers
 
     @pytest.mark.asyncio
     async def test_request_get_success(self):
@@ -161,7 +162,32 @@ class TestWavesApi:
                 "https://test.com/api",
                 method="POST",
                 data={"key": "value"},
-                headers={"token": "test"},
+                headers={"token": "test", "Content-Type": "application/json"},
+            )
+            
+            assert result.success is True
+            assert result.code == 0
+
+    @pytest.mark.asyncio
+    async def test_request_post_form_urlencoded(self):
+        """测试POST请求 - form-urlencoded格式"""
+        api = WavesApi()
+        
+        mock_response = Mock()
+        mock_response.json.return_value = {
+            "code": 0,
+            "data": {"result": "success"},
+            "message": "OK",
+        }
+        
+        with patch.object(api.client, "post", new_callable=AsyncMock) as mock_post:
+            mock_post.return_value = mock_response
+            
+            result = await api._request(
+                "https://test.com/api",
+                method="POST",
+                data={"key": "value"},
+                headers={"token": "test", "Content-Type": "application/x-www-form-urlencoded; charset=utf-8"},
             )
             
             assert result.success is True

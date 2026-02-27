@@ -53,11 +53,12 @@ async def add_cookie(event: Event, ck: str, did: str = "", is_login: bool = Fals
             
             role_id = role_data.get("roleId", "")
             role_name = role_data.get("roleName", "未知角色")
+            server_id = role_data.get("serverId", "")
             
             if not role_id:
                 continue
             
-            success, bat = await waves_api.get_request_token(role_id, ck, did)
+            success, bat = await waves_api.get_request_token(role_id, ck, did, server_id)
             if not success:
                 return f"获取令牌失败: {bat}"
             
@@ -79,6 +80,10 @@ async def add_cookie(event: Event, ck: str, did: str = "", is_login: bool = Fals
                 existing_bind.platform = "qq"
                 existing_bind.is_login = existing_bind.is_login or is_login
                 existing_bind.group_id = group_id
+                
+                final_is_login = existing_bind.is_login or is_login
+                if final_is_login and did:
+                    await WutheringWavesBind.update_token_by_login(role_id, WAVES_GAME_ID, ck, did)
             else:
                 new_bind = WutheringWavesBind(
                     user_id=user_id,
@@ -94,6 +99,9 @@ async def add_cookie(event: Event, ck: str, did: str = "", is_login: bool = Fals
                     group_id=group_id
                 )
                 session.add(new_bind)
+                
+                if is_login and did:
+                    await WutheringWavesBind.update_token_by_login(role_id, WAVES_GAME_ID, ck, did)
             
             role_list.append(
                 {
@@ -286,14 +294,39 @@ async def handle_query_bind(event: Event):
         msg = "❌ 你还没有绑定游戏账号！\n请使用 /添加CK <CK> [devCode] 进行绑定"
         return await query_bind_cmd.finish(msg)
     
-    msg = "📋 你的绑定信息：\n\n"
+    msg = []
     for bind in binds:
-        masked_cookie = f"{bind.cookie[:6]}...{bind.cookie[-6:]}"
-        status = "✅有效" if bind.status != "无效" else "❌失效"
-        msg += f"特征码: {bind.game_uid}\n"
-        msg += f"CK: {masked_cookie}\n"
-        msg += f"状态: {status}\n"
-        msg += f"绑定时间: {bind.create_time.strftime('%Y-%m-%d %H:%M:%S')}\n"
-        msg += "-" * 30 + "\n"
+        if not (bind.game_uid and bind.game_uid.isdigit() and len(bind.game_uid) == 9):
+            continue
+        if not bind.cookie or bind.status == "无效":
+            continue
+        
+        msg.append(f"鸣潮特征码: {bind.game_uid} 的 token 和 did")
+        msg.append(f"添加token {bind.cookie}, {bind.did}")
+        msg.append("--------------------------------")
     
-    return await query_bind_cmd.finish(msg)
+    if not msg:
+        msg = "您当前未绑定token或者token已全部失效\n"
+        return await query_bind_cmd.finish(msg)
+    
+    msg.append("直接复制并加上前缀即可用于token登录")
+    
+    return await query_bind_cmd.finish("\n".join(msg))
+
+
+delete_invalid_ck_cmd = on_command("删除无效CK", aliases={"删除无效ck", "删除无效token"}, priority=5, block=True)
+
+
+@delete_invalid_ck_cmd.handle()
+async def handle_delete_invalid_ck(event: Event):
+    """删除所有无效CK"""
+    user_id = event.get_user_id()
+    
+    del_count = await WutheringWavesBind.delete_all_invalid_cookie(WAVES_GAME_ID)
+    
+    if del_count == 0:
+        msg = "✅ 当前没有无效的token需要删除"
+    else:
+        msg = f"✅ 已成功删除 {del_count} 个无效token"
+    
+    await delete_invalid_ck_cmd.finish(msg)

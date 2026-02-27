@@ -75,6 +75,21 @@ class WavesConfig(BaseModel):
         default=15.0,
         description="技能评分权重"
     )
+    
+    ENABLE_AUTO_DELETE_INVALID: bool = Field(
+        default=True,
+        description="是否启用自动删除无效CK"
+    )
+    
+    AUTO_DELETE_HOUR: int = Field(
+        default=23,
+        description="自动删除无效CK的小时（0-23）"
+    )
+    
+    AUTO_DELETE_MINUTE: int = Field(
+        default=30,
+        description="自动删除无效CK的分钟（0-59）"
+    )
 
 
 _driver = get_driver()
