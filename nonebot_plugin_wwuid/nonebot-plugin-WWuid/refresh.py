@@ -48,13 +48,20 @@ class RefreshManager:
         if not ck_result:
             return False, error_reply(WAVES_CODE_102)
         
-        ck, did = ck_result
+        ck, did, bat = ck_result
         
         user_binds = await self._get_user_binds(user_id)
         if not user_binds:
             return False, error_reply(WAVES_CODE_102)
         
         role_id = user_binds[0].game_uid
+        
+        # 如果数据库中没有bat，尝试获取
+        if not bat:
+            success, bat = await self.api.get_request_token(role_id, ck, did)
+            if not success:
+                logger.warning("获取request_token失败，尝试继续刷新...")
+                bat = ""
         
         try:
             await self.api.login_log(role_id, ck)
@@ -86,7 +93,7 @@ class RefreshManager:
             char_id = role_info["roleId"]
             try:
                 role_detail_response = await self.api.get_role_detail_info(
-                    str(char_id), role_id, ck
+                    str(char_id), role_id, ck, did, bat
                 )
                 
                 if role_detail_response.success:
@@ -151,13 +158,20 @@ class RefreshManager:
         if not ck_result:
             return False, error_reply(WAVES_CODE_102)
         
-        ck, did = ck_result
+        ck, did, bat = ck_result
         
         user_binds = await self._get_user_binds(user_id)
         if not user_binds:
             return False, error_reply(WAVES_CODE_102)
         
         role_id = user_binds[0].game_uid
+        
+        # 如果数据库中没有bat，尝试获取
+        if not bat:
+            success, bat = await self.api.get_request_token(role_id, ck, did)
+            if not success:
+                logger.warning("获取request_token失败，尝试继续刷新...")
+                bat = ""
         
         try:
             await self.api.login_log(role_id, ck)
@@ -169,7 +183,7 @@ class RefreshManager:
         
         try:
             role_detail_response = await self.api.get_role_detail_info(
-                str(role_id_by_name), role_id, ck
+                str(role_id_by_name), role_id, ck, did, bat
             )
             
             if not role_detail_response.success:
@@ -187,22 +201,22 @@ class RefreshManager:
             logger.error(f"刷新角色 {role_name} 时发生错误: {e}")
             return False, f"❌ 刷新失败: {str(e)}"
     
-    async def _get_user_ck(self, user_id: str) -> Optional[Tuple[str, str]]:
-        """获取用户CK和did
+    async def _get_user_ck(self, user_id: str) -> Optional[Tuple[str, str, str]]:
+        """获取用户CK、did和bat
         
         Returns:
-            Tuple[str, str]: (cookie, did) 或 None
+            Tuple[str, str, str]: (cookie, did, bat) 或 None
         """
         async with get_session() as session:
             result = await session.execute(
-                select(WutheringWavesBind.cookie, WutheringWavesBind.did).where(
+                select(WutheringWavesBind.cookie, WutheringWavesBind.did, WutheringWavesBind.bat).where(
                     WutheringWavesBind.user_id == user_id,
                     WutheringWavesBind.game_id == 3
                 ).limit(1)
             )
             row = result.fetchone()
             if row:
-                return row[0], row[1]
+                return row[0], row[1], row[2]
             return None
     
     async def _get_user_binds(self, user_id: str) -> List[WutheringWavesBind]:
