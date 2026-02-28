@@ -80,8 +80,19 @@ class WavesApi:
         if cookie:
             headers["token"] = cookie
         
+        # devCode格式: "ip, user_agent"
         if dev_code:
             headers["devCode"] = dev_code
+        else:
+            import socket
+            try:
+                s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+                s.connect(("8.8.8.8", 80))
+                ip = s.getsockname()[0]
+                s.close()
+            except:
+                ip = "127.0.0.1"
+            headers["devCode"] = f"{ip}, {user_agent}"
         
         if is_community:
             headers["version"] = "2.10.0"
@@ -193,7 +204,7 @@ class WavesApi:
         headers = self._get_headers(cookie, role_id)
         headers["devCode"] = ""
         
-        data = {"gameId": 2}
+        data = {"gameId": 3}  # 鸣潮gameId=3
         
         return await self._request(url, method="POST", data=data, headers=headers)
     
@@ -202,18 +213,31 @@ class WavesApi:
         char_id: str,
         role_id: str,
         cookie: str,
+        did: str = "",
+        bat: str = "",
     ) -> WavesApiResponse:
-        """获取单个角色详情"""
+        """获取单个角色详情
+        
+        Args:
+            char_id: 角色ID（如忌炎是1403）
+            role_id: 用户特征码
+            cookie: 用户token
+            did: 设备ID
+            bat: 通过requestToken获取的accessToken
+        """
         url = f"{self.MAIN_URL}/aki/roleBox/akiBox/getRoleDetail"
-        headers = self._get_headers(cookie, role_id)
+        headers = self._get_headers(cookie, role_id, is_community=True)
+        # 添加did和bat头部（用于角色详情接口认证）
+        headers["did"] = did
+        headers["b-at"] = bat
         
         data = {
-            "gameId": 2,
+            "gameId": 3,  # 鸣潮gameId=3
             "serverId": self._get_server_id(role_id),
             "roleId": role_id,
             "channelId": "19",
             "countryCode": "1",
-            "id": char_id,
+            "id": str(char_id),
         }
         
         return await self._request(url, method="POST", data=data, headers=headers)
@@ -224,7 +248,7 @@ class WavesApi:
         headers = self._get_headers(cookie, role_id)
         
         data = {
-            "gameId": 2,
+            "gameId": 3,  # 鸣潮gameId=3
             "serverId": self._get_server_id(role_id),
             "roleId": role_id,
         }
