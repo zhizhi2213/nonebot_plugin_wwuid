@@ -32,7 +32,7 @@ class WavesConfig(BaseModel):
     )
     
     ENABLE_IMAGE_RENDER: bool = Field(
-        default=False,
+        default=True,
         description="是否启用图片渲染"
     )
     

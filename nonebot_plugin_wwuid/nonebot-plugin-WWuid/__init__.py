@@ -1,17 +1,21 @@
 from nonebot.plugin import PluginMetadata, inherit_supported_adapters
 
-# 【新增】导入 CK 绑定功能
-from .bind import bind_ck, query_bind_cmd, delete_ck_cmd, delete_invalid_ck_cmd
+# 导入核心功能
+from .core import (
+    # 绑定管理
+    bind_ck,
+    query_bind_cmd,
+    delete_ck_cmd,
+    delete_invalid_ck_cmd,
+    # 管理器
+    get_refresh_manager,
+    get_query_manager,
+    get_statistics_manager,
+    # 自动删除
+    auto_delete_all_invalid_cookie,
+)
 
-# 【新增】导入自动删除无效CK功能
-from .auto_delete import auto_delete_all_invalid_cookie
-
-# 【新增】导入角色练度功能
-from .refresh import get_refresh_manager
-from .query import get_query_manager
-from .statistics import get_statistics_manager
-
-# 【新增】导入角色练度命令
+# 导入命令
 from .commands import (
     refresh_all,
     refresh_single,
@@ -19,6 +23,12 @@ from .commands import (
     query_role_list,
     statistics_rank,
     statistics_summary,
+)
+
+# 导入API模型（便于外部使用）
+from .api import (
+    Role,
+    RoleDetailData,
 )
 
 __plugin_meta__ = PluginMetadata(
