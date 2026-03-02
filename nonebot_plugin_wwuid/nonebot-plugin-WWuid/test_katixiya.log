@@ -1,0 +1,507 @@
+2026-02-28 17:15:42,310 - INFO - ============================================================
+2026-02-28 17:15:42,310 - INFO - 鸣潮角色练度卡片生成测试 - 使用真实 API 数据
+2026-02-28 17:15:42,314 - INFO - ============================================================
+2026-02-28 17:15:42,385 - ERROR -   ✗ 模块导入失败: attempted relative import beyond top-level package
+2026-02-28 17:15:42,388 - ERROR -   Debug - sys.path: ['C:\\work\\data\\git\\nonebot_plugin_wwuid\\nonebot_plugin_wwuid\\nonebot-plugin-WWuid', 'C:\\work\\data\\git\\nonebot_plugin_wwuid\\nonebot_plugin_wwuid\\nonebot-plugin-WWuid\\plugin_debug_tests', 'C:\\Users\\zhaoz\\AppData\\Local\\Programs\\Python\\Python312\\python312.zip', 'C:\\Users\\zhaoz\\AppData\\Local\\Programs\\Python\\Python312\\DLLs', 'C:\\Users\\zhaoz\\AppData\\Local\\Programs\\Python\\Python312\\Lib', 'C:\\Users\\zhaoz\\AppData\\Local\\Programs\\Python\\Python312', 'C:\\Users\\zhaoz\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages']
+2026-02-28 17:17:09,803 - INFO - ============================================================
+2026-02-28 17:17:09,805 - INFO - 鸣潮角色练度卡片生成测试 - 使用真实 API 数据
+2026-02-28 17:17:09,805 - INFO - ============================================================
+2026-02-28 17:17:30,960 - INFO - ============================================================
+2026-02-28 17:17:30,960 - INFO - 鸣潮角色练度卡片生成测试 - 使用真实 API 数据
+2026-02-28 17:17:30,960 - INFO - ============================================================
+2026-02-28 17:17:31,306 - ERROR -   X 模块导入失败: No module named 'nonebot_plugin_orm'
+2026-02-28 17:17:31,306 - ERROR -   Debug - sys.path: ['C:\\work\\data\\git\\nonebot_plugin_wwuid\\nonebot_plugin_wwuid\\nonebot-plugin-WWuid', 'C:\\work\\data\\git\\nonebot_plugin_wwuid\\nonebot_plugin_wwuid\\nonebot-plugin-WWuid\\plugin_debug_tests', 'C:\\Users\\zhaoz\\AppData\\Local\\Programs\\Python\\Python312\\python312.zip', 'C:\\Users\\zhaoz\\AppData\\Local\\Programs\\Python\\Python312\\DLLs', 'C:\\Users\\zhaoz\\AppData\\Local\\Programs\\Python\\Python312\\Lib', 'C:\\Users\\zhaoz\\AppData\\Local\\Programs\\Python\\Python312', 'C:\\Users\\zhaoz\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages']
+2026-02-28 17:17:58,269 - INFO - ============================================================
+2026-02-28 17:17:58,269 - INFO - 鸣潮角色练度卡片生成测试 - 使用真实 API 数据
+2026-02-28 17:17:58,269 - INFO - ============================================================
+2026-02-28 17:17:58,611 - ERROR -   X 模块导入失败: No module named 'nonebot_plugin_orm'
+2026-02-28 17:17:58,611 - ERROR -   Debug - sys.path: ['C:\\work\\data\\git\\nonebot_plugin_wwuid\\nonebot_plugin_wwuid\\nonebot-plugin-WWuid', 'C:\\work\\data\\git\\nonebot_plugin_wwuid\\nonebot_plugin_wwuid\\nonebot-plugin-WWuid\\plugin_debug_tests', 'C:\\Users\\zhaoz\\AppData\\Local\\Programs\\Python\\Python312\\python312.zip', 'C:\\Users\\zhaoz\\AppData\\Local\\Programs\\Python\\Python312\\DLLs', 'C:\\Users\\zhaoz\\AppData\\Local\\Programs\\Python\\Python312\\Lib', 'C:\\Users\\zhaoz\\AppData\\Local\\Programs\\Python\\Python312', 'C:\\Users\\zhaoz\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages']
+2026-02-28 17:18:25,664 - INFO - ============================================================
+2026-02-28 17:18:25,665 - INFO - 鸣潮角色练度卡片生成测试 - 使用真实 API 数据
+2026-02-28 17:18:25,665 - INFO - ============================================================
+2026-02-28 17:18:26,097 - ERROR -   X 模块导入失败: No module named 'wwuid_renderer.fonts'
+2026-02-28 17:18:26,098 - ERROR -   Debug - sys.path: ['C:\\work\\data\\git\\nonebot_plugin_wwuid\\nonebot_plugin_wwuid\\nonebot-plugin-WWuid', 'C:\\work\\data\\git\\nonebot_plugin_wwuid\\nonebot_plugin_wwuid\\nonebot-plugin-WWuid\\plugin_debug_tests', 'C:\\Users\\zhaoz\\AppData\\Local\\Programs\\Python\\Python312\\python312.zip', 'C:\\Users\\zhaoz\\AppData\\Local\\Programs\\Python\\Python312\\DLLs', 'C:\\Users\\zhaoz\\AppData\\Local\\Programs\\Python\\Python312\\Lib', 'C:\\Users\\zhaoz\\AppData\\Local\\Programs\\Python\\Python312', 'C:\\Users\\zhaoz\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages']
+2026-02-28 17:18:46,339 - INFO - ============================================================
+2026-02-28 17:18:46,339 - INFO - 鸣潮角色练度卡片生成测试 - 使用真实 API 数据
+2026-02-28 17:18:46,339 - INFO - ============================================================
+2026-02-28 17:18:46,754 - INFO -   ✓ 核心模块导入成功
+2026-02-28 17:18:46,756 - INFO -   ✓ 输出目录: C:\work\data\git\nonebot_plugin_wwuid\nonebot_plugin_wwuid\nonebot-plugin-WWuid\plugin_debug_tests\output
+2026-02-28 17:18:47,702 - INFO - 
+[1/5] 正在请求访问令牌 (bat)...
+2026-02-28 17:18:47,904 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/roleBox/requestToken "HTTP/1.1 200 OK"
+2026-02-28 17:18:47,906 - INFO -   ✓ 获取访问令牌成功
+2026-02-28 17:18:47,906 - INFO - 
+[2/5] 正在获取角色列表...
+2026-02-28 17:18:47,965 - INFO - HTTP Request: POST https://api.kurobbs.com/gamer/role/list "HTTP/1.1 200 OK"
+2026-02-28 17:18:47,965 - ERROR -   X 解析角色列表失败: 1 validation error for RoleList
+  Input should be a valid dictionary or instance of RoleList [type=model_type, input_value=[{'achievementCount': 652... 'widgetHasPull': True}], input_type=list]
+    For further information visit https://errors.pydantic.dev/2.11/v/model_type
+2026-02-28 17:18:47,966 - ERROR -   原始数据: [{'achievementCount': 652, 'actionRecoverSwitch': False, 'activeDay': 635, 'fashionCollectionPercent': 0, 'gameHeadUrl': 'https://prod-alicdn-community.kurobbs.com/game/mingchaoIcon.png', 'gameId': 3, 'gameLevel': '80', 'headPhotoUrl': 'https://web-static.kurobbs.com/adminConfig/139/profile_picture/1770106316737.png', 'id': '2051997', 'isDefault': True, 'phantomPercent': 1, 'roleId': '100276895', 'roleName': '芝.', 'roleNum': 34, 'serverId': '76402e5b20be2c39f095a152090afddc', 'serverName': '鸣潮', 'userId': '10161459', 'widgetHasPull': True}]
+2026-02-28 17:18:47,966 - INFO - 
+============================================================
+2026-02-28 17:18:47,968 - ERROR - X 测试过程中出现错误
+2026-02-28 17:18:47,968 - INFO - ============================================================
+2026-02-28 17:19:06,241 - INFO - ============================================================
+2026-02-28 17:19:06,242 - INFO - 鸣潮角色练度卡片生成测试 - 使用真实 API 数据
+2026-02-28 17:19:06,242 - INFO - ============================================================
+2026-02-28 17:19:06,639 - INFO -   ✓ 核心模块导入成功
+2026-02-28 17:19:06,639 - INFO -   ✓ 输出目录: C:\work\data\git\nonebot_plugin_wwuid\nonebot_plugin_wwuid\nonebot-plugin-WWuid\plugin_debug_tests\output
+2026-02-28 17:19:07,467 - INFO - 
+[1/5] 正在请求访问令牌 (bat)...
+2026-02-28 17:19:07,626 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/roleBox/requestToken "HTTP/1.1 200 OK"
+2026-02-28 17:19:07,626 - INFO -   ✓ 获取访问令牌成功
+2026-02-28 17:19:07,627 - INFO - 
+[2/5] 正在获取角色列表...
+2026-02-28 17:19:07,685 - INFO - HTTP Request: POST https://api.kurobbs.com/gamer/role/list "HTTP/1.1 200 OK"
+2026-02-28 17:19:07,687 - ERROR -   X 解析角色列表失败: name 'Role' is not defined
+2026-02-28 17:19:07,687 - ERROR -   原始数据: [{'achievementCount': 652, 'actionRecoverSwitch': False, 'activeDay': 635, 'fashionCollectionPercent': 0, 'gameHeadUrl': 'https://prod-alicdn-community.kurobbs.com/game/mingchaoIcon.png', 'gameId': 3, 'gameLevel': '80', 'headPhotoUrl': 'https://web-static.kurobbs.com/adminConfig/139/profile_picture/1770106316737.png', 'id': '2051997', 'isDefault': True, 'phantomPercent': 1, 'roleId': '100276895', 'roleName': '芝.', 'roleNum': 34, 'serverId': '76402e5b20be2c39f095a152090afddc', 'serverName': '鸣潮', 'userId': '10161459', 'widgetHasPull': True}]
+2026-02-28 17:19:07,687 - INFO - 
+============================================================
+2026-02-28 17:19:07,688 - ERROR - X 测试过程中出现错误
+2026-02-28 17:19:07,688 - INFO - ============================================================
+2026-02-28 17:19:20,817 - INFO - ============================================================
+2026-02-28 17:19:20,817 - INFO - 鸣潮角色练度卡片生成测试 - 使用真实 API 数据
+2026-02-28 17:19:20,817 - INFO - ============================================================
+2026-02-28 17:19:21,212 - INFO -   ✓ 核心模块导入成功
+2026-02-28 17:19:21,212 - INFO -   ✓ 输出目录: C:\work\data\git\nonebot_plugin_wwuid\nonebot_plugin_wwuid\nonebot-plugin-WWuid\plugin_debug_tests\output
+2026-02-28 17:19:22,004 - INFO - 
+[1/5] 正在请求访问令牌 (bat)...
+2026-02-28 17:19:22,157 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/roleBox/requestToken "HTTP/1.1 200 OK"
+2026-02-28 17:19:22,158 - INFO -   ✓ 获取访问令牌成功
+2026-02-28 17:19:22,158 - INFO - 
+[2/5] 正在获取角色列表...
+2026-02-28 17:19:22,216 - INFO - HTTP Request: POST https://api.kurobbs.com/gamer/role/list "HTTP/1.1 200 OK"
+2026-02-28 17:19:22,216 - ERROR -   X 解析角色列表失败: 4 validation errors for Role
+level
+  Field required [type=missing, input_value={'achievementCount': 652,..., 'widgetHasPull': True}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+starLevel
+  Field required [type=missing, input_value={'achievementCount': 652,..., 'widgetHasPull': True}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+attributeId
+  Field required [type=missing, input_value={'achievementCount': 652,..., 'widgetHasPull': True}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+weaponTypeId
+  Field required [type=missing, input_value={'achievementCount': 652,..., 'widgetHasPull': True}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+2026-02-28 17:19:22,217 - ERROR -   原始数据: [{'achievementCount': 652, 'actionRecoverSwitch': False, 'activeDay': 635, 'fashionCollectionPercent': 0, 'gameHeadUrl': 'https://prod-alicdn-community.kurobbs.com/game/mingchaoIcon.png', 'gameId': 3, 'gameLevel': '80', 'headPhotoUrl': 'https://web-static.kurobbs.com/adminConfig/139/profile_picture/1770106316737.png', 'id': '2051997', 'isDefault': True, 'phantomPercent': 1, 'roleId': '100276895', 'roleName': '芝.', 'roleNum': 34, 'serverId': '76402e5b20be2c39f095a152090afddc', 'serverName': '鸣潮', 'userId': '10161459', 'widgetHasPull': True}]
+2026-02-28 17:19:22,218 - INFO - 
+============================================================
+2026-02-28 17:19:22,218 - ERROR - X 测试过程中出现错误
+2026-02-28 17:19:22,218 - INFO - ============================================================
+2026-02-28 17:19:52,413 - INFO - ============================================================
+2026-02-28 17:19:52,413 - INFO - 鸣潮角色练度卡片生成测试 - 使用真实 API 数据
+2026-02-28 17:19:52,414 - INFO - ============================================================
+2026-02-28 17:19:52,814 - INFO -   ✓ 核心模块导入成功
+2026-02-28 17:19:52,814 - INFO -   ✓ 输出目录: C:\work\data\git\nonebot_plugin_wwuid\nonebot_plugin_wwuid\nonebot-plugin-WWuid\plugin_debug_tests\output
+2026-02-28 17:19:53,614 - INFO - 
+[1/5] 正在请求访问令牌 (bat)...
+2026-02-28 17:19:53,828 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/roleBox/requestToken "HTTP/1.1 200 OK"
+2026-02-28 17:19:53,828 - INFO -   ✓ 获取访问令牌成功
+2026-02-28 17:19:53,828 - INFO - 
+[2/5] 正在获取角色列表...
+2026-02-28 17:19:53,889 - INFO - HTTP Request: POST https://api.kurobbs.com/gamer/role/list "HTTP/1.1 200 OK"
+2026-02-28 17:19:53,889 - INFO -   ✓ 成功获取角色列表，共 1 个角色
+2026-02-28 17:19:53,889 - WARNING -   ! 未找到目标角色 '卡提希娅'，将使用第一个角色
+2026-02-28 17:19:53,889 - INFO -   ✓ 选定角色: 芝. (ID: 100276895)
+2026-02-28 17:19:53,889 - INFO - 
+[3/5] 正在获取角色详情数据...
+2026-02-28 17:19:54,011 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/roleBox/akiBox/getRoleDetail "HTTP/1.1 200 OK"
+2026-02-28 17:19:54,013 - ERROR -   X 解析角色详情失败: 5 validation errors for RoleDetailData
+role
+  Field required [type=missing, input_value={}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+level
+  Field required [type=missing, input_value={}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+chainList
+  Field required [type=missing, input_value={}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+weaponData
+  Field required [type=missing, input_value={}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+skillList
+  Field required [type=missing, input_value={}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+2026-02-28 17:19:54,014 - ERROR -   ! 原始数据已保存至: C:\work\data\git\nonebot_plugin_wwuid\nonebot_plugin_wwuid\nonebot-plugin-WWuid\plugin_debug_tests\debug_data_100276895.json
+2026-02-28 17:19:54,014 - INFO - 
+============================================================
+2026-02-28 17:19:54,016 - ERROR - X 测试过程中出现错误
+2026-02-28 17:19:54,016 - INFO - ============================================================
+2026-02-28 17:20:17,944 - INFO - ============================================================
+2026-02-28 17:20:17,944 - INFO - 鸣潮角色练度卡片生成测试 - 使用真实 API 数据
+2026-02-28 17:20:17,945 - INFO - ============================================================
+2026-02-28 17:20:18,355 - INFO -   ✓ 核心模块导入成功
+2026-02-28 17:20:18,355 - INFO -   ✓ 输出目录: C:\work\data\git\nonebot_plugin_wwuid\nonebot_plugin_wwuid\nonebot-plugin-WWuid\plugin_debug_tests\output
+2026-02-28 17:20:19,167 - INFO - 
+[1/5] 正在请求访问令牌 (bat)...
+2026-02-28 17:20:19,318 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/roleBox/requestToken "HTTP/1.1 200 OK"
+2026-02-28 17:20:19,320 - INFO -   ✓ 获取访问令牌成功
+2026-02-28 17:20:19,320 - INFO - 
+[2/5] 正在获取角色列表...
+2026-02-28 17:20:19,375 - INFO - HTTP Request: POST https://api.kurobbs.com/gamer/role/list "HTTP/1.1 200 OK"
+2026-02-28 17:20:19,376 - INFO -   ✓ 成功获取角色列表，共 1 个角色
+2026-02-28 17:20:19,376 - WARNING -   ! 未找到目标角色 '卡提希娅'，将使用第一个角色
+2026-02-28 17:20:19,376 - INFO -   ✓ 选定角色: 芝. (ID: 100276895)
+2026-02-28 17:20:19,376 - INFO - 
+[3/5] 正在获取角色详情数据...
+2026-02-28 17:20:19,472 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/roleBox/akiBox/getRoleDetail "HTTP/1.1 200 OK"
+2026-02-28 17:20:19,472 - ERROR -   X 获取角色详情失败: 
+2026-02-28 17:20:19,474 - INFO - 
+============================================================
+2026-02-28 17:20:19,474 - ERROR - X 测试过程中出现错误
+2026-02-28 17:20:19,474 - INFO - ============================================================
+2026-02-28 17:20:42,806 - INFO - ============================================================
+2026-02-28 17:20:42,806 - INFO - 鸣潮角色练度卡片生成测试 - 使用真实 API 数据
+2026-02-28 17:20:42,806 - INFO - ============================================================
+2026-02-28 17:20:43,217 - INFO -   ✓ 核心模块导入成功
+2026-02-28 17:20:43,217 - INFO -   ✓ 输出目录: C:\work\data\git\nonebot_plugin_wwuid\nonebot_plugin_wwuid\nonebot-plugin-WWuid\plugin_debug_tests\output
+2026-02-28 17:20:44,008 - INFO - 
+[1/5] 正在请求访问令牌 (bat)...
+2026-02-28 17:20:44,162 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/roleBox/requestToken "HTTP/1.1 200 OK"
+2026-02-28 17:20:44,163 - INFO -   ✓ 获取访问令牌成功
+2026-02-28 17:20:44,163 - INFO - 
+[2/5] 正在获取角色列表...
+2026-02-28 17:20:44,223 - INFO - HTTP Request: POST https://api.kurobbs.com/gamer/role/list "HTTP/1.1 200 OK"
+2026-02-28 17:20:44,223 - INFO -   ✓ 成功获取角色列表，共 1 个角色
+2026-02-28 17:20:44,223 - WARNING -   ! 未找到目标角色 '卡提希娅'，将使用第一个角色
+2026-02-28 17:20:44,223 - INFO -   ✓ 选定角色: 芝. (ID: 100276895)
+2026-02-28 17:20:44,223 - INFO - 
+[3/5] 正在获取角色详情数据...
+2026-02-28 17:20:44,311 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/roleBox/akiBox/getRoleDetail "HTTP/1.1 200 OK"
+2026-02-28 17:20:44,312 - ERROR -   X 获取角色详情失败: 
+2026-02-28 17:20:44,312 - INFO - 
+============================================================
+2026-02-28 17:20:44,312 - ERROR - X 测试过程中出现错误
+2026-02-28 17:20:44,314 - INFO - ============================================================
+2026-02-28 17:21:32,760 - INFO - ============================================================
+2026-02-28 17:21:32,761 - INFO - 鸣潮角色练度卡片生成测试 - 使用真实 API 数据
+2026-02-28 17:21:32,761 - INFO - ============================================================
+2026-02-28 17:21:33,197 - INFO -   ✓ 核心模块导入成功
+2026-02-28 17:21:33,198 - INFO -   ✓ 输出目录: C:\work\data\git\nonebot_plugin_wwuid\nonebot_plugin_wwuid\nonebot-plugin-WWuid\plugin_debug_tests\output
+2026-02-28 17:21:33,968 - INFO - 
+[1/5] 正在请求访问令牌 (bat)...
+2026-02-28 17:21:34,114 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/roleBox/requestToken "HTTP/1.1 200 OK"
+2026-02-28 17:21:34,115 - INFO -   ✓ 获取访问令牌成功
+2026-02-28 17:21:34,115 - INFO - 
+[2/5] 正在获取角色列表...
+2026-02-28 17:21:34,170 - INFO - HTTP Request: POST https://api.kurobbs.com/gamer/role/list "HTTP/1.1 200 OK"
+2026-02-28 17:21:34,172 - INFO -   ✓ 成功获取角色列表，共 1 个角色
+2026-02-28 17:21:34,172 - WARNING -   ! 未找到目标角色 '卡提希娅'，将使用第一个角色
+2026-02-28 17:21:34,172 - INFO -   ✓ 选定角色: 芝. (ID: 100276895)
+2026-02-28 17:21:34,172 - INFO - 
+[3/5] 正在获取角色详情数据...
+2026-02-28 17:21:34,249 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/roleBox/akiBox/getRoleDetail "HTTP/1.1 200 OK"
+2026-02-28 17:21:34,250 - ERROR -   X 获取角色详情失败: 
+2026-02-28 17:21:34,252 - INFO - 
+============================================================
+2026-02-28 17:21:34,252 - ERROR - X 测试过程中出现错误
+2026-02-28 17:21:34,252 - INFO - ============================================================
+2026-02-28 17:21:58,243 - INFO - ============================================================
+2026-02-28 17:21:58,243 - INFO - 鸣潮角色练度卡片生成测试 - 使用真实 API 数据
+2026-02-28 17:21:58,245 - INFO - ============================================================
+2026-02-28 17:21:58,669 - INFO -   ✓ 核心模块导入成功
+2026-02-28 17:21:58,670 - INFO -   ✓ 输出目录: C:\work\data\git\nonebot_plugin_wwuid\nonebot_plugin_wwuid\nonebot-plugin-WWuid\plugin_debug_tests\output
+2026-02-28 17:21:59,517 - INFO - 
+[1/5] 正在请求访问令牌 (bat)...
+2026-02-28 17:21:59,674 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/roleBox/requestToken "HTTP/1.1 200 OK"
+2026-02-28 17:21:59,675 - INFO -   ✓ 获取访问令牌成功
+2026-02-28 17:21:59,675 - INFO - 
+[2/5] 正在获取角色列表...
+2026-02-28 17:21:59,722 - INFO - HTTP Request: POST https://api.kurobbs.com/gamer/role/list "HTTP/1.1 200 OK"
+2026-02-28 17:21:59,723 - INFO -   ✓ 成功获取角色列表，共 1 个角色
+2026-02-28 17:21:59,723 - WARNING -   ! 未找到目标角色 '卡提希娅'，将使用第一个角色
+2026-02-28 17:21:59,723 - INFO -   ✓ 选定角色: 芝. (ID: 100276895)
+2026-02-28 17:21:59,724 - INFO - 
+[3/5] 正在获取角色详情数据...
+2026-02-28 17:21:59,812 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/roleBox/akiBox/getRoleDetail "HTTP/1.1 200 OK"
+2026-02-28 17:21:59,813 - ERROR -   X 获取角色详情失败: API 错误代码: 10000
+2026-02-28 17:21:59,813 - ERROR -   API Code: 10000, Message: 
+2026-02-28 17:21:59,813 - INFO - 
+============================================================
+2026-02-28 17:21:59,813 - ERROR - X 测试过程中出现错误
+2026-02-28 17:21:59,815 - INFO - ============================================================
+2026-03-02 16:00:10,453 - INFO - ============================================================
+2026-03-02 16:00:10,454 - INFO - 鸣潮角色练度卡片生成测试 - 使用真实 API 数据
+2026-03-02 16:00:10,454 - INFO - ============================================================
+2026-03-02 16:00:10,596 - ERROR -   ✗ 模块导入失败: attempted relative import beyond top-level package
+2026-03-02 16:00:10,596 - ERROR -   Debug - sys.path: ['C:\\work\\data\\git\\nonebot_plugin_wwuid\\nonebot_plugin_wwuid\\nonebot-plugin-WWuid', 'C:\\work\\data\\git\\nonebot_plugin_wwuid\\nonebot_plugin_wwuid\\nonebot-plugin-WWuid\\plugin_debug_tests', 'C:\\Users\\zhaoz\\AppData\\Local\\Programs\\Python\\Python312\\python312.zip', 'C:\\Users\\zhaoz\\AppData\\Local\\Programs\\Python\\Python312\\DLLs', 'C:\\Users\\zhaoz\\AppData\\Local\\Programs\\Python\\Python312\\Lib', 'C:\\Users\\zhaoz\\AppData\\Local\\Programs\\Python\\Python312', 'C:\\Users\\zhaoz\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages']
+2026-03-02 16:00:39,198 - INFO - ============================================================
+2026-03-02 16:00:39,198 - INFO - 鸣潮角色练度卡片生成测试 - 使用真实 API 数据
+2026-03-02 16:00:39,198 - INFO - ============================================================
+2026-03-02 16:01:29,474 - INFO - ============================================================
+2026-03-02 16:01:29,474 - INFO - 鸣潮角色练度卡片生成测试 - 使用真实 API 数据
+2026-03-02 16:01:29,474 - INFO - ============================================================
+2026-03-02 16:01:29,805 - ERROR -   ✗ 模块导入失败: No module named 'nonebot_plugin_orm'
+2026-03-02 16:01:29,806 - ERROR -   Debug - sys.path: ['C:\\work\\data\\git\\nonebot_plugin_wwuid\\nonebot_plugin_wwuid\\nonebot-plugin-WWuid', 'C:\\work\\data\\git\\nonebot_plugin_wwuid\\nonebot_plugin_wwuid\\nonebot-plugin-WWuid\\plugin_debug_tests', 'C:\\Users\\zhaoz\\AppData\\Local\\Programs\\Python\\Python312\\python312.zip', 'C:\\Users\\zhaoz\\AppData\\Local\\Programs\\Python\\Python312\\DLLs', 'C:\\Users\\zhaoz\\AppData\\Local\\Programs\\Python\\Python312\\Lib', 'C:\\Users\\zhaoz\\AppData\\Local\\Programs\\Python\\Python312', 'C:\\Users\\zhaoz\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages']
+2026-03-02 16:02:43,540 - INFO - ============================================================
+2026-03-02 16:02:43,540 - INFO - 鸣潮角色练度卡片生成测试 - 使用真实 API 数据
+2026-03-02 16:02:43,541 - INFO - ============================================================
+2026-03-02 16:02:43,978 - INFO -   ✓ 核心模块导入成功
+2026-03-02 16:02:43,978 - INFO -   ✓ 输出目录: C:\work\data\git\nonebot_plugin_wwuid\nonebot_plugin_wwuid\nonebot-plugin-WWuid\plugin_debug_tests\output
+2026-03-02 16:02:44,902 - INFO - 
+[1/6] 正在请求访问令牌 (bat)...
+2026-03-02 16:02:45,113 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/roleBox/requestToken "HTTP/1.1 200 OK"
+2026-03-02 16:02:45,115 - INFO -   ✓ 获取访问令牌成功
+2026-03-02 16:02:45,115 - INFO - 
+[2/6] 正在获取账号列表（按游戏筛选）...
+2026-03-02 16:02:45,170 - INFO - HTTP Request: POST https://api.kurobbs.com/gamer/role/list "HTTP/1.1 200 OK"
+2026-03-02 16:02:45,172 - ERROR -   ✗ 解析角色列表失败: 1 validation error for RoleList
+  Input should be a valid dictionary or instance of RoleList [type=model_type, input_value=[{'achievementCount': 652... 'widgetHasPull': True}], input_type=list]
+    For further information visit https://errors.pydantic.dev/2.11/v/model_type
+2026-03-02 16:02:45,173 - ERROR -   原始数据: [{'achievementCount': 652, 'actionRecoverSwitch': False, 'activeDay': 637, 'fashionCollectionPercent': 0, 'gameHeadUrl': 'https://prod-alicdn-community.kurobbs.com/game/mingchaoIcon.png', 'gameId': 3, 'gameLevel': '80', 'headPhotoUrl': 'https://web-static.kurobbs.com/adminConfig/139/profile_picture/1770106316737.png', 'id': '2051997', 'isDefault': True, 'phantomPercent': 1, 'roleId': '100276895', 'roleName': '芝.', 'roleNum': 34, 'serverId': '76402e5b20be2c39f095a152090afddc', 'serverName': '鸣潮', 'userId': '10161459', 'widgetHasPull': True}]
+2026-03-02 16:02:45,175 - INFO - 
+============================================================
+2026-03-02 16:02:45,175 - ERROR - ✗ 测试过程中出现错误
+2026-03-02 16:02:45,175 - INFO - ============================================================
+2026-03-02 16:03:33,903 - INFO - ============================================================
+2026-03-02 16:03:33,904 - INFO - 鸣潮角色练度卡片生成测试 - 使用真实 API 数据
+2026-03-02 16:03:33,904 - INFO - ============================================================
+2026-03-02 16:03:34,370 - INFO -   ✓ 核心模块导入成功
+2026-03-02 16:03:34,371 - INFO -   ✓ 输出目录: C:\work\data\git\nonebot_plugin_wwuid\nonebot_plugin_wwuid\nonebot-plugin-WWuid\plugin_debug_tests\output
+2026-03-02 16:03:35,145 - INFO - 
+[1/6] 正在请求访问令牌 (bat)...
+2026-03-02 16:03:35,297 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/roleBox/requestToken "HTTP/1.1 200 OK"
+2026-03-02 16:03:35,297 - INFO -   ✓ 获取访问令牌成功
+2026-03-02 16:03:35,297 - INFO - 
+[2/6] 正在获取账号列表（按游戏筛选）...
+2026-03-02 16:03:35,353 - INFO - HTTP Request: POST https://api.kurobbs.com/gamer/role/list "HTTP/1.1 200 OK"
+2026-03-02 16:03:35,354 - INFO -   ✓ 成功获取账号信息（游戏ID=3）
+2026-03-02 16:03:35,354 - INFO - 
+[3/6] 正在获取已拥有角色列表（游戏内角色）...
+2026-03-02 16:03:35,415 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/calculator/ownedRole/roleInfo "HTTP/1.1 200 OK"
+2026-03-02 16:03:35,415 - WARNING -   ! 未在API返回中找到角色“卡提希娅”，使用预设ID 1409
+2026-03-02 16:03:35,415 - INFO -   ✓ 目标角色: 卡提希娅 (角色ID: 1409)
+2026-03-02 16:03:35,415 - INFO - 
+[4/6] 正在获取角色详情数据...
+2026-03-02 16:03:35,501 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/roleBox/akiBox/getRoleDetail "HTTP/1.1 200 OK"
+2026-03-02 16:03:35,502 - ERROR -   ✗ 获取角色详情失败: API 错误代码: 10000
+2026-03-02 16:03:35,502 - ERROR -   API Code: 10000, Message: 
+2026-03-02 16:03:35,503 - INFO - 
+============================================================
+2026-03-02 16:03:35,503 - ERROR - ✗ 测试过程中出现错误
+2026-03-02 16:03:35,503 - INFO - ============================================================
+2026-03-02 16:04:10,968 - INFO - ============================================================
+2026-03-02 16:04:10,969 - INFO - 鸣潮角色练度卡片生成测试 - 使用真实 API 数据
+2026-03-02 16:04:10,969 - INFO - ============================================================
+2026-03-02 16:04:11,364 - INFO -   ✓ 核心模块导入成功
+2026-03-02 16:04:11,364 - INFO -   ✓ 输出目录: C:\work\data\git\nonebot_plugin_wwuid\nonebot_plugin_wwuid\nonebot-plugin-WWuid\plugin_debug_tests\output
+2026-03-02 16:04:12,149 - INFO - 
+[1/6] 正在请求访问令牌 (bat)...
+2026-03-02 16:04:12,301 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/roleBox/requestToken "HTTP/1.1 200 OK"
+2026-03-02 16:04:12,302 - INFO -   ✓ 获取访问令牌成功
+2026-03-02 16:04:12,302 - INFO - 
+[2/6] 正在获取账号列表（按游戏筛选）...
+2026-03-02 16:04:12,358 - INFO - HTTP Request: POST https://api.kurobbs.com/gamer/role/list "HTTP/1.1 200 OK"
+2026-03-02 16:04:12,358 - INFO -   ✓ 成功获取账号信息（游戏ID=3）
+2026-03-02 16:04:12,358 - INFO - 
+[3/6] 正在获取已拥有角色列表（游戏内角色）...
+2026-03-02 16:04:12,410 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/calculator/ownedRole/roleInfo "HTTP/1.1 200 OK"
+2026-03-02 16:04:12,411 - WARNING -   ! 未在API返回中找到角色“卡提希娅”，使用预设ID 1409
+2026-03-02 16:04:12,411 - INFO -   ✓ 目标角色: 卡提希娅 (角色ID: 1409)
+2026-03-02 16:04:12,411 - INFO - 
+[4/6] 正在获取角色详情数据...
+2026-03-02 16:04:12,557 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/roleBox/akiBox/getRoleDetail "HTTP/1.1 200 OK"
+2026-03-02 16:04:12,587 - INFO -   ✓ 成功解析角色详情数据
+2026-03-02 16:04:12,587 - INFO - 
+[5/6] 正在调用渲染引擎生成图片...
+2026-03-02 16:04:12,767 - INFO -   ✓ 图片渲染成功 (大小: 284.0 KB)
+2026-03-02 16:04:12,767 - INFO - 
+[6/6] 正在保存结果...
+2026-03-02 16:04:12,770 - INFO -   ✓ 图片已保存至: C:\work\data\git\nonebot_plugin_wwuid\nonebot_plugin_wwuid\nonebot-plugin-WWuid\plugin_debug_tests\output\卡提希娅_100276895_20260302_160412.png
+2026-03-02 16:04:12,772 - INFO - 
+============================================================
+2026-03-02 16:04:12,772 - INFO - ✓ 测试流程全部完成!
+2026-03-02 16:04:12,773 - INFO - ============================================================
+2026-03-02 16:26:16,197 - INFO - ============================================================
+2026-03-02 16:26:16,198 - INFO - 鸣潮角色练度卡片生成测试 - 使用真实 API 数据
+2026-03-02 16:26:16,198 - INFO - ============================================================
+2026-03-02 16:26:16,672 - INFO -   ✓ 核心模块导入成功
+2026-03-02 16:26:16,674 - INFO -   ✓ 输出目录: C:\work\data\git\nonebot_plugin_wwuid\nonebot_plugin_wwuid\nonebot-plugin-WWuid\plugin_debug_tests\output
+2026-03-02 16:26:17,630 - INFO - 
+[1/6] 正在请求访问令牌 (bat)...
+2026-03-02 16:26:17,832 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/roleBox/requestToken "HTTP/1.1 200 OK"
+2026-03-02 16:26:17,834 - INFO -   ✓ 获取访问令牌成功
+2026-03-02 16:26:17,834 - INFO - 
+[2/6] 正在获取账号列表（按游戏筛选）...
+2026-03-02 16:26:17,893 - INFO - HTTP Request: POST https://api.kurobbs.com/gamer/role/list "HTTP/1.1 200 OK"
+2026-03-02 16:26:17,894 - INFO -   ✓ 成功获取账号信息（游戏ID=3）
+2026-03-02 16:26:17,894 - INFO - 
+[3/6] 正在获取已拥有角色列表（游戏内角色）...
+2026-03-02 16:26:17,951 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/calculator/ownedRole/roleInfo "HTTP/1.1 200 OK"
+2026-03-02 16:26:17,952 - WARNING -   ! 未在API返回中找到角色“卡提希娅”，使用映射表ID 1409
+2026-03-02 16:26:17,952 - INFO -   ✓ 目标角色: 卡提希娅 (角色ID: 1409)
+2026-03-02 16:26:17,952 - INFO - 
+[4/6] 正在获取角色详情数据...
+2026-03-02 16:26:18,086 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/roleBox/akiBox/getRoleDetail "HTTP/1.1 200 OK"
+2026-03-02 16:26:18,116 - INFO -   ✓ 成功解析角色详情数据
+2026-03-02 16:26:18,116 - INFO - 
+[5/6] 正在调用渲染引擎生成图片...
+2026-03-02 16:26:19,333 - INFO - HTTP Request: GET https://web-static.kurobbs.com/adminConfig/27/role_pic/1766623697584.png "HTTP/1.1 200 OK"
+2026-03-02 16:26:20,522 - INFO - HTTP Request: GET https://web-static.kurobbs.com/adminConfig/29/weapon_icon/1749626115345.png "HTTP/1.1 200 OK"
+2026-03-02 16:26:21,471 - INFO - HTTP Request: GET https://web-static.kurobbs.com/adminConfig/36/role_skill_icon/1749626124707.png "HTTP/1.1 200 OK"
+2026-03-02 16:26:22,392 - INFO - HTTP Request: GET https://web-static.kurobbs.com/adminConfig/36/role_skill_icon/1749625939793.png "HTTP/1.1 200 OK"
+2026-03-02 16:26:23,284 - INFO - HTTP Request: GET https://web-static.kurobbs.com/adminConfig/36/role_skill_icon/1749626083383.png "HTTP/1.1 200 OK"
+2026-03-02 16:26:24,180 - INFO - HTTP Request: GET https://web-static.kurobbs.com/adminConfig/36/role_skill_icon/1749625840023.png "HTTP/1.1 200 OK"
+2026-03-02 16:26:25,074 - INFO - HTTP Request: GET https://web-static.kurobbs.com/adminConfig/36/role_skill_icon/1749625767517.png "HTTP/1.1 200 OK"
+2026-03-02 16:26:25,958 - INFO - HTTP Request: GET https://web-static.kurobbs.com/adminConfig/36/role_skill_icon/1749626201051.png "HTTP/1.1 200 OK"
+2026-03-02 16:26:26,862 - INFO - HTTP Request: GET https://web-static.kurobbs.com/adminConfig/37/chain_icon/1749626271682.png "HTTP/1.1 200 OK"
+2026-03-02 16:26:27,934 - INFO - HTTP Request: GET https://web-static.kurobbs.com/adminConfig/37/chain_icon/1749625664614.png "HTTP/1.1 200 OK"
+2026-03-02 16:26:29,042 - INFO - HTTP Request: GET https://web-static.kurobbs.com/adminConfig/37/chain_icon/1749626024633.png "HTTP/1.1 200 OK"
+2026-03-02 16:26:30,019 - INFO - HTTP Request: GET https://web-static.kurobbs.com/adminConfig/37/chain_icon/1749626099743.png "HTTP/1.1 200 OK"
+2026-03-02 16:26:30,951 - INFO - HTTP Request: GET https://web-static.kurobbs.com/adminConfig/37/chain_icon/1749625732420.png "HTTP/1.1 200 OK"
+2026-03-02 16:26:31,882 - INFO - HTTP Request: GET https://web-static.kurobbs.com/adminConfig/37/chain_icon/1749625681580.png "HTTP/1.1 200 OK"
+2026-03-02 16:26:32,789 - INFO - HTTP Request: GET https://web-static.kurobbs.com/adminConfig/30/phantom_icon/1742894477144.png "HTTP/1.1 200 OK"
+2026-03-02 16:26:33,867 - INFO - HTTP Request: GET https://web-static.kurobbs.com/adminConfig/30/phantom_icon/1749625586631.png "HTTP/1.1 200 OK"
+2026-03-02 16:26:34,909 - INFO - HTTP Request: GET https://web-static.kurobbs.com/adminConfig/30/phantom_icon/1749626061986.png "HTTP/1.1 200 OK"
+2026-03-02 16:26:35,844 - INFO - HTTP Request: GET https://web-static.kurobbs.com/adminConfig/30/phantom_icon/1749626027884.png "HTTP/1.1 200 OK"
+2026-03-02 16:26:36,788 - INFO - HTTP Request: GET https://web-static.kurobbs.com/adminConfig/30/phantom_icon/1742894089508.png "HTTP/1.1 200 OK"
+2026-03-02 16:26:36,900 - INFO -   ✓ 图片渲染成功 (大小: 477.7 KB)
+2026-03-02 16:26:36,900 - INFO - 
+[6/6] 正在保存结果...
+2026-03-02 16:26:36,903 - INFO -   ✓ 图片已保存至: C:\work\data\git\nonebot_plugin_wwuid\nonebot_plugin_wwuid\nonebot-plugin-WWuid\plugin_debug_tests\output\卡提希娅_100276895_20260302_162636.png
+2026-03-02 16:26:36,907 - INFO - 
+============================================================
+2026-03-02 16:26:36,907 - INFO - ✓ 测试流程全部完成!
+2026-03-02 16:26:36,907 - INFO - ============================================================
+2026-03-02 16:40:40,708 - INFO - ============================================================
+2026-03-02 16:40:40,708 - INFO - 鸣潮角色练度卡片生成测试 - 使用真实 API 数据
+2026-03-02 16:40:40,708 - INFO - ============================================================
+2026-03-02 16:41:52,654 - INFO - ============================================================
+2026-03-02 16:41:52,655 - INFO - 鸣潮角色练度卡片生成测试 - 使用真实 API 数据
+2026-03-02 16:41:52,655 - INFO - ============================================================
+2026-03-02 16:42:40,663 - INFO - ============================================================
+2026-03-02 16:42:40,663 - INFO - 鸣潮角色练度卡片生成测试 - 使用真实 API 数据
+2026-03-02 16:42:40,663 - INFO - ============================================================
+2026-03-02 16:42:41,087 - INFO -   ✓ 核心模块导入成功
+2026-03-02 16:42:41,088 - INFO -   ✓ 输出目录: C:\work\data\git\nonebot_plugin_wwuid\nonebot_plugin_wwuid\nonebot-plugin-WWuid\plugin_debug_tests\output
+2026-03-02 16:42:42,012 - INFO - 
+[1/6] 正在请求访问令牌 (bat)...
+2026-03-02 16:42:42,207 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/roleBox/requestToken "HTTP/1.1 200 OK"
+2026-03-02 16:42:42,209 - INFO -   ✓ 获取访问令牌成功
+2026-03-02 16:42:42,209 - INFO - 
+[2/6] 正在获取账号列表（按游戏筛选）...
+2026-03-02 16:42:42,265 - INFO - HTTP Request: POST https://api.kurobbs.com/gamer/role/list "HTTP/1.1 200 OK"
+2026-03-02 16:42:42,266 - INFO -   ✓ 成功获取账号信息（游戏ID=3）
+2026-03-02 16:42:42,266 - INFO - 
+[3/6] 正在获取已拥有角色列表（游戏内角色）...
+2026-03-02 16:42:42,323 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/calculator/ownedRole/roleInfo "HTTP/1.1 200 OK"
+2026-03-02 16:42:42,325 - WARNING -   ! 未在API返回中找到角色“卡提希娅”，使用映射表ID 1409
+2026-03-02 16:42:42,325 - INFO -   ✓ 目标角色: 卡提希娅 (角色ID: 1409)
+2026-03-02 16:42:42,325 - INFO - 
+[4/6] 正在获取角色详情数据...
+2026-03-02 16:42:42,461 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/roleBox/akiBox/getRoleDetail "HTTP/1.1 200 OK"
+2026-03-02 16:42:42,490 - INFO -   ✓ 成功解析角色详情数据
+2026-03-02 16:42:42,490 - INFO - 
+[5/6] 正在调用渲染引擎生成图片...
+2026-03-02 16:42:42,689 - INFO -   ✓ 图片渲染成功 (大小: 477.4 KB)
+2026-03-02 16:42:42,691 - INFO - 
+[6/6] 正在保存结果...
+2026-03-02 16:42:42,692 - INFO -   ✓ 图片已保存至: C:\work\data\git\nonebot_plugin_wwuid\nonebot_plugin_wwuid\nonebot-plugin-WWuid\plugin_debug_tests\output\卡提希娅_100276895_20260302_164242.png
+2026-03-02 16:42:42,695 - INFO - 
+============================================================
+2026-03-02 16:42:42,695 - INFO - ✓ 测试流程全部完成!
+2026-03-02 16:42:42,695 - INFO - ============================================================
+2026-03-02 16:52:06,945 - INFO - ============================================================
+2026-03-02 16:52:06,945 - INFO - 鸣潮角色练度卡片生成测试 - 使用真实 API 数据
+2026-03-02 16:52:06,945 - INFO - ============================================================
+2026-03-02 16:52:07,438 - INFO -   ✓ 核心模块导入成功
+2026-03-02 16:52:07,438 - INFO -   ✓ 输出目录: C:\work\data\git\nonebot_plugin_wwuid\nonebot_plugin_wwuid\nonebot-plugin-WWuid\plugin_debug_tests\output
+2026-03-02 16:52:10,061 - INFO - 
+[1/6] 正在请求访问令牌 (bat)...
+2026-03-02 16:52:10,210 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/roleBox/requestToken "HTTP/1.1 200 OK"
+2026-03-02 16:52:10,212 - INFO -   ✓ 获取访问令牌成功
+2026-03-02 16:52:10,212 - INFO - 
+[2/6] 正在获取账号列表（按游戏筛选）...
+2026-03-02 16:52:10,270 - INFO - HTTP Request: POST https://api.kurobbs.com/gamer/role/list "HTTP/1.1 200 OK"
+2026-03-02 16:52:10,271 - INFO -   ✓ 成功获取账号信息（游戏ID=3）
+2026-03-02 16:52:10,309 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/roleBox/akiBox/baseData "HTTP/1.1 200 OK"
+2026-03-02 16:52:10,311 - INFO - 
+[3/6] 正在获取已拥有角色列表（游戏内角色）...
+2026-03-02 16:52:10,372 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/calculator/ownedRole/roleInfo "HTTP/1.1 200 OK"
+2026-03-02 16:52:10,373 - WARNING -   ! 未在API返回中找到角色“卡提希娅”，使用映射表ID 1409
+2026-03-02 16:52:10,373 - INFO -   ✓ 目标角色: 卡提希娅 (角色ID: 1409)
+2026-03-02 16:52:10,373 - INFO - 
+[4/6] 正在获取角色详情数据...
+2026-03-02 16:52:10,498 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/roleBox/akiBox/getRoleDetail "HTTP/1.1 200 OK"
+2026-03-02 16:52:10,529 - INFO -   ✓ 成功解析角色详情数据
+2026-03-02 16:52:10,529 - INFO - 
+[5/6] 正在调用渲染引擎生成图片...
+2026-03-02 16:52:10,529 - ERROR -   ✗ 图片渲染失败: render_role_card() got an unexpected keyword argument 'account'
+2026-03-02 16:52:10,530 - ERROR - Traceback (most recent call last):
+  File "C:\work\data\git\nonebot_plugin_wwuid\nonebot_plugin_wwuid\nonebot-plugin-WWuid\plugin_debug_tests\test_katixiya_with_icons.py", line 189, in main
+    image_bytes = render_role_card(role_detail, account=account_info, raw_detail=detail_response.data)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: render_role_card() got an unexpected keyword argument 'account'
+
+2026-03-02 16:52:10,533 - INFO - 
+============================================================
+2026-03-02 16:52:10,533 - ERROR - ✗ 测试过程中出现错误
+2026-03-02 16:52:10,534 - INFO - ============================================================
+2026-03-02 16:52:47,351 - INFO - ============================================================
+2026-03-02 16:52:47,351 - INFO - 鸣潮角色练度卡片生成测试 - 使用真实 API 数据
+2026-03-02 16:52:47,351 - INFO - ============================================================
+2026-03-02 16:52:47,803 - INFO -   ✓ 核心模块导入成功
+2026-03-02 16:52:47,805 - INFO -   ✓ 输出目录: C:\work\data\git\nonebot_plugin_wwuid\nonebot_plugin_wwuid\nonebot-plugin-WWuid\plugin_debug_tests\output
+2026-03-02 16:52:50,490 - INFO - 
+[1/6] 正在请求访问令牌 (bat)...
+2026-03-02 16:52:50,647 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/roleBox/requestToken "HTTP/1.1 200 OK"
+2026-03-02 16:52:50,649 - INFO -   ✓ 获取访问令牌成功
+2026-03-02 16:52:50,649 - INFO - 
+[2/6] 正在获取账号列表（按游戏筛选）...
+2026-03-02 16:52:50,712 - INFO - HTTP Request: POST https://api.kurobbs.com/gamer/role/list "HTTP/1.1 200 OK"
+2026-03-02 16:52:50,712 - INFO -   ✓ 成功获取账号信息（游戏ID=3）
+2026-03-02 16:52:50,759 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/roleBox/akiBox/baseData "HTTP/1.1 200 OK"
+2026-03-02 16:52:50,759 - INFO - 
+[3/6] 正在获取已拥有角色列表（游戏内角色）...
+2026-03-02 16:52:50,816 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/calculator/ownedRole/roleInfo "HTTP/1.1 200 OK"
+2026-03-02 16:52:50,817 - WARNING -   ! 未在API返回中找到角色“卡提希娅”，使用映射表ID 1409
+2026-03-02 16:52:50,818 - INFO -   ✓ 目标角色: 卡提希娅 (角色ID: 1409)
+2026-03-02 16:52:50,818 - INFO - 
+[4/6] 正在获取角色详情数据...
+2026-03-02 16:52:50,951 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/roleBox/akiBox/getRoleDetail "HTTP/1.1 200 OK"
+2026-03-02 16:52:51,064 - INFO -   ✓ 成功解析角色详情数据
+2026-03-02 16:52:51,065 - INFO - 
+[5/6] 正在调用渲染引擎生成图片...
+2026-03-02 16:52:53,810 - INFO - HTTP Request: GET https://web-static.kurobbs.com/adminConfig/139/profile_picture/1770106316737.png "HTTP/1.1 200 OK"
+2026-03-02 16:52:54,074 - INFO -   ✓ 图片渲染成功 (大小: 486.4 KB)
+2026-03-02 16:52:54,074 - INFO - 
+[6/6] 正在保存结果...
+2026-03-02 16:52:54,075 - INFO -   ✓ 图片已保存至: C:\work\data\git\nonebot_plugin_wwuid\nonebot_plugin_wwuid\nonebot-plugin-WWuid\plugin_debug_tests\output\卡提希娅_100276895_20260302_165254.png
+2026-03-02 16:52:54,078 - INFO - 
+============================================================
+2026-03-02 16:52:54,079 - INFO - ✓ 测试流程全部完成!
+2026-03-02 16:52:54,079 - INFO - ============================================================
+2026-03-02 16:53:54,166 - INFO - ============================================================
+2026-03-02 16:53:54,171 - INFO - 鸣潮角色练度卡片生成测试 - 使用真实 API 数据
+2026-03-02 16:53:54,172 - INFO - ============================================================
+2026-03-02 16:53:55,020 - INFO -   ✓ 核心模块导入成功
+2026-03-02 16:53:55,025 - INFO -   ✓ 输出目录: C:\work\data\git\nonebot_plugin_wwuid\nonebot_plugin_wwuid\nonebot-plugin-WWuid\plugin_debug_tests\output
+2026-03-02 16:53:57,576 - INFO - 
+[1/6] 正在请求访问令牌 (bat)...
+2026-03-02 16:53:57,722 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/roleBox/requestToken "HTTP/1.1 200 OK"
+2026-03-02 16:53:57,723 - INFO -   ✓ 获取访问令牌成功
+2026-03-02 16:53:57,723 - INFO - 
+[2/6] 正在获取账号列表（按游戏筛选）...
+2026-03-02 16:53:57,782 - INFO - HTTP Request: POST https://api.kurobbs.com/gamer/role/list "HTTP/1.1 200 OK"
+2026-03-02 16:53:57,783 - INFO -   ✓ 成功获取账号信息（游戏ID=3）
+2026-03-02 16:53:57,823 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/roleBox/akiBox/baseData "HTTP/1.1 200 OK"
+2026-03-02 16:53:57,825 - INFO - 
+[3/6] 正在获取已拥有角色列表（游戏内角色）...
+2026-03-02 16:53:57,873 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/calculator/ownedRole/roleInfo "HTTP/1.1 200 OK"
+2026-03-02 16:53:57,874 - WARNING -   ! 未在API返回中找到角色“卡提希娅”，使用映射表ID 1409
+2026-03-02 16:53:57,874 - INFO -   ✓ 目标角色: 卡提希娅 (角色ID: 1409)
+2026-03-02 16:53:57,874 - INFO - 
+[4/6] 正在获取角色详情数据...
+2026-03-02 16:53:58,034 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/roleBox/akiBox/getRoleDetail "HTTP/1.1 200 OK"
+2026-03-02 16:53:58,037 - INFO -   ✓ 成功解析角色详情数据
+2026-03-02 16:53:58,037 - INFO - 
+[5/6] 正在调用渲染引擎生成图片...
+2026-03-02 16:53:58,239 - INFO -   ✓ 图片渲染成功 (大小: 495.1 KB)
+2026-03-02 16:53:58,239 - INFO - 
+[6/6] 正在保存结果...
+2026-03-02 16:53:58,241 - INFO -   ✓ 图片已保存至: C:\work\data\git\nonebot_plugin_wwuid\nonebot_plugin_wwuid\nonebot-plugin-WWuid\plugin_debug_tests\output\卡提希娅_100276895_20260302_165358.png
+2026-03-02 16:53:58,244 - INFO - 
+============================================================
+2026-03-02 16:53:58,244 - INFO - ✓ 测试流程全部完成!
+2026-03-02 16:53:58,244 - INFO - ============================================================

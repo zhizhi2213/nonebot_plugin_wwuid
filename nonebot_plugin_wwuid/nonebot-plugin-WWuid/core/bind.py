@@ -8,8 +8,8 @@ from nonebot.adapters import Event
 from nonebot.params import CommandArg
 from nonebot_plugin_orm import get_session
 from sqlalchemy import select, delete
-from ..api.models import WutheringWavesBind
-from ..api.waves_api import WavesApi
+from .wwuid_api.models import WutheringWavesBind
+from .wwuid_api.client import WavesApi
 from ..constants import WAVES_GAME_ID
 
 waves_api = WavesApi()

@@ -5,9 +5,9 @@
 from nonebot import get_driver
 from nonebot.adapters.onebot.v11 import Bot
 from nonebot.log import logger
-from ..api.models import WutheringWavesBind
-from ..config import get_config
-from ..constants import WAVES_GAME_ID
+from .wwuid_api.models import WutheringWavesBind
+from .plugin_core.config import get_config
+from .plugin_core.constants import WAVES_GAME_ID
 
 
 _driver = get_driver()

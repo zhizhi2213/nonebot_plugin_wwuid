@@ -7,7 +7,7 @@ from dataclasses import dataclass, field
 
 from nonebot import logger
 
-from ..api.models import RoleDetailData
+from .wwuid_api.models import RoleDetailData
 from .refresh import get_refresh_manager
 
 

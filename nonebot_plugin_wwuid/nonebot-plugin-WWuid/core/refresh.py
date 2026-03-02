@@ -11,13 +11,8 @@ from nonebot_plugin_orm import get_session
 
 from sqlalchemy import select
 
-from ..api.waves_api import WavesApi, WavesApiResponse
-from ..api.models import (
-    WutheringWavesBind,
-    RoleList,
-    RoleDetailData,
-    Role,
-)
+from .wwuid_api.client import WavesApi, WavesApiResponse
+from .wwuid_api.models import WutheringWavesBind, RoleList, RoleDetailData, Role
 from ..utils import (
     save_user_cache,
     save_role_cache,

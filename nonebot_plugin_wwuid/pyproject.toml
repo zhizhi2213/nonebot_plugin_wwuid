@@ -13,8 +13,6 @@ dependencies = [
     "nonebot-plugin-apscheduler",
     "nonebot-plugin-uninfo",
     "nonebot-plugin-orm[sqlite]>=0.7.0",
-    "httpx>=0.24.0",
-    "pydantic>=2.0.0",
     "pandas",
     "beautifulsoup4",
 ]

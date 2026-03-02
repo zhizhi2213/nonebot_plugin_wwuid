@@ -1,0 +1,277 @@
+# coding=utf-8
+"""
+鸣潮API请求模块
+"""
+import json
+import random
+import string
+from typing import Dict, Any, Optional, List, Tuple
+from datetime import datetime
+
+import httpx
+
+from plugin_core.errors import (
+    WAVES_CODE_101,
+    WAVES_CODE_102,
+    WAVES_CODE_999,
+)
+from plugin_core.constants import WAVES_GAME_ID
+
+
+class WavesApiResponse:
+    """API响应统一格式"""
+    
+    def __init__(self, code: int = 0, data: Any = None, message: str = ""):
+        self.code = code
+        self.data = data
+        self.message = message
+    
+    @property
+    def success(self) -> bool:
+        # 库洛API返回200或0都表示成功
+        return self.code == 0 or self.code == 200
+    
+    def throw_msg(self) -> str:
+        return self.message or f"API 错误代码: {self.code}"
+    
+    def model_dump(self) -> Dict[str, Any]:
+        return {
+            "code": self.code,
+            "data": self.data,
+            "message": self.message
+        }
+
+
+class WavesApi:
+    """鸣潮API客户端"""
+    
+    def __init__(self):
+        self.SERVER_ID = "76402e5b20be2c39f095a152090afddc"
+        self.MAIN_URL = "https://api.kurobbs.com"
+        self.client = httpx.AsyncClient(timeout=30.0)
+    
+    async def close(self):
+        await self.client.aclose()
+    
+    def _get_server_id(self, role_id: str) -> str:
+        """获取服务器ID"""
+        try:
+            role_id_int = int(role_id)
+            if role_id_int >= 200000000:
+                return "919752ae5ea09c1ced910dd668a63ffb"
+        except (ValueError, TypeError):
+            pass
+        return self.SERVER_ID
+    
+    def _get_headers(self, cookie: str = "", role_id: str = "", is_community: bool = False, dev_code: str = "") -> Dict[str, str]:
+        """构建请求头"""
+        platform_source = "ios"
+        user_agent = (
+            "Mozilla/5.0 (iPhone; CPU iPhone OS 18_6 like Mac OS X) "
+            "AppleWebKit/605.1.15 (KHTML, like Gecko)  KuroGameBox/2.10.0"
+        )
+        
+        headers = {
+            "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
+            "source": platform_source,
+            "User-Agent": user_agent,
+        }
+        
+        if cookie:
+            headers["token"] = cookie
+        
+        # devCode格式: "ip, user_agent"
+        if dev_code:
+            headers["devCode"] = dev_code
+        else:
+            import socket
+            try:
+                s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+                s.connect(("8.8.8.8", 80))
+                ip = s.getsockname()[0]
+                s.close()
+            except:
+                ip = "127.0.0.1"
+            headers["devCode"] = f"{ip}, {user_agent}"
+        
+        if is_community:
+            headers["version"] = "2.10.0"
+        
+        return headers
+    
+    async def _request(
+        self,
+        url: str,
+        method: str = "GET",
+        data: Optional[Dict[str, Any]] = None,
+        headers: Optional[Dict[str, str]] = None,
+        role_id: Optional[str] = None,
+    ) -> WavesApiResponse:
+        """统一请求方法"""
+        try:
+            content_type = headers.get("Content-Type", "") if headers else ""
+            
+            if method.upper() == "GET":
+                response = await self.client.get(url, headers=headers)
+            else:
+                if "application/x-www-form-urlencoded" in content_type:
+                    response = await self.client.post(url, data=data, headers=headers)
+                else:
+                    response = await self.client.post(url, json=data, headers=headers)
+            
+            result = response.json()
+            
+            if isinstance(result, dict):
+                code = result.get("code", -1)
+                data = result.get("data", None)
+                if isinstance(data, str) and data:
+                    try:
+                        data = json.loads(data)
+                    except json.JSONDecodeError:
+                        pass
+                message = result.get("message", "")
+                return WavesApiResponse(code=code, data=data, message=message)
+            else:
+                return WavesApiResponse(code=-1, message="响应格式错误")
+                
+        except httpx.TimeoutException:
+            return WavesApiResponse(code=WAVES_CODE_999, message="请求超时")
+        except httpx.RequestError as e:
+            return WavesApiResponse(code=WAVES_CODE_999, message=f"网络错误: {str(e)}")
+        except Exception as e:
+            return WavesApiResponse(code=WAVES_CODE_999, message=f"未知错误: {str(e)}")
+    
+    async def login_log(self, role_id: str, cookie: str) -> WavesApiResponse:
+        """登录校验"""
+        url = f"{self.MAIN_URL}/user/login/log"
+        headers = self._get_headers(cookie, role_id)
+        headers["version"] = "1.0"
+        return await self._request(url, method="POST", headers=headers)
+    
+    async def get_kuro_role_list(self, cookie: str, did: str = "", game_id: int = WAVES_GAME_ID) -> WavesApiResponse:
+        """获取库洛角色列表"""
+        url = f"{self.MAIN_URL}/gamer/role/list"
+        headers = self._get_headers(cookie=cookie, is_community=True, dev_code=did)
+        
+        data = {"gameId": game_id}
+        
+        return await self._request(url, method="POST", data=data, headers=headers)
+    
+    async def get_request_token(self, role_id: str, cookie: str, did: str = "", server_id: Optional[str] = None) -> Tuple[bool, str]:
+        """请求访问令牌"""
+        url = f"{self.MAIN_URL}/aki/roleBox/requestToken"
+        headers = self._get_headers(cookie=cookie, is_community=True)
+        headers["did"] = did
+        headers["b-at"] = ""
+        
+        data = {
+            "gameId": WAVES_GAME_ID,
+            "serverId": server_id or self._get_server_id(role_id),
+            "roleId": role_id,
+        }
+        
+        response = await self._request(url, method="POST", data=data, headers=headers)
+        
+        if response.success:
+            data = response.data
+            # data可能是字符串JSON，需要解析
+            if isinstance(data, str) and data:
+                try:
+                    data = json.loads(data)
+                except json.JSONDecodeError:
+                    pass
+            if isinstance(data, dict) and "accessToken" in data:
+                return True, data.get("accessToken", "")
+        
+        return False, response.message or "获取token失败"
+    
+    async def get_base_info(self, role_id: str, cookie: str) -> WavesApiResponse:
+        """获取账户基础信息"""
+        url = f"{self.MAIN_URL}/aki/roleBox/akiBox/baseData"
+        headers = self._get_headers(cookie, role_id)
+        
+        data = {
+            "gameId": 3,
+            "serverId": self._get_server_id(role_id),
+            "roleId": role_id,
+        }
+        
+        return await self._request(url, method="POST", data=data, headers=headers)
+    
+    async def get_role_info(self, role_id: str, cookie: str) -> WavesApiResponse:
+        """获取角色列表"""
+        url = f"{self.MAIN_URL}/gamer/role/list"
+        headers = self._get_headers(cookie, role_id)
+        headers["devCode"] = ""
+        
+        data = {"gameId": 3}  # 鸣潮gameId=3
+        
+        return await self._request(url, method="POST", data=data, headers=headers)
+    
+    async def get_role_detail_info(
+        self,
+        char_id: str,
+        role_id: str,
+        cookie: str,
+        did: str = "",
+        bat: str = "",
+    ) -> WavesApiResponse:
+        """获取单个角色详情
+            
+        Args:
+            char_id: 角色ID（如忌炎是1403）
+            role_id: 用户特征码
+            cookie: 用户token
+            did: 设备ID
+            bat: 通过requestToken获取的accessToken
+        """
+        url = f"{self.MAIN_URL}/aki/roleBox/akiBox/getRoleDetail"
+        # 使用base_header（带devCode），该接口使用 did 与 b-at 鉴权，不需要 token
+        headers = self._get_headers(is_community=False)
+        # 角色详情接口使用did和bat进行认证，不直接传token
+        headers["did"] = did
+        headers["b-at"] = bat
+            
+        data = {
+            "gameId": 3,  # 鸣潮gameId=3
+            "serverId": self._get_server_id(role_id),
+            "roleId": role_id,
+            "channelId": "19",
+            "countryCode": "1",
+            "id": str(char_id),
+        }
+            
+        return await self._request(url, method="POST", data=data, headers=headers)
+    
+    async def refresh_data(self, role_id: str, cookie: str) -> WavesApiResponse:
+        """刷新数据"""
+        url = f"{self.MAIN_URL}/aki/roleBox/akiBox/refreshData"
+        headers = self._get_headers(cookie, role_id)
+        
+        data = {
+            "gameId": 3,  # 鸣潮gameId=3
+            "serverId": self._get_server_id(role_id),
+            "roleId": role_id,
+        }
+        
+        return await self._request(url, method="POST", data=data, headers=headers)
+    
+    async def get_owned_role_info(self, role_id: str, cookie: str) -> WavesApiResponse:
+        """获取已拥有角色信息"""
+        url = f"{self.MAIN_URL}/aki/calculator/ownedRole/roleInfo"
+        headers = self._get_headers(cookie, role_id)
+        
+        data = {
+            "serverId": self._get_server_id(role_id),
+            "roleId": role_id,
+        }
+        
+        return await self._request(url, method="POST", data=data, headers=headers)
+
+
+def generate_random_jwt_token() -> str:
+    """生成随机JWT Token（用于兜底）"""
+    chars = string.ascii_letters + string.digits
+    payload = "".join(random.choice(chars) for _ in range(58))
+    signature = "".join(random.choice(chars) for _ in range(43))
+    return f"eyJhbGciOiJIUzI1NiJ9.{payload}.{signature}"

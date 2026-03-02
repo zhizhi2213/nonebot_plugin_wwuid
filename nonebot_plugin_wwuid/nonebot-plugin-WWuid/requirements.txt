@@ -8,8 +8,7 @@ nonebot-plugin-htmlrender
 nonebot-plugin-apscheduler
 nonebot-plugin-uninfo
 nonebot-plugin-orm[sqlite]>=0.7.0
-httpx
+
 pandas
 beautifulsoup4
 lxml
-Pillow

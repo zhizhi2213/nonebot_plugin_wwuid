@@ -16,7 +16,7 @@ except ImportError:
     logger = logging.getLogger(__name__)
 
 try:
-    from ..api.models import Role, RoleDetailData
+    from ..wwuid_api.models import Role, RoleDetailData
 except ImportError:
     # 直接运行脚本时的回退
     Role = None

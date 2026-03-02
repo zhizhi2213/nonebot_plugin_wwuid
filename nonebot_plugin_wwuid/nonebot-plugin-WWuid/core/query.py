@@ -6,7 +6,7 @@ from typing import Optional, Tuple, Union
 
 from nonebot import logger
 
-from ..api.models import RoleDetailData
+from .wwuid_api.models import RoleDetailData
 from ..utils import (
     get_role_id_by_name,
     get_role_name_by_id,
@@ -14,7 +14,7 @@ from ..utils import (
 )
 from .refresh import get_refresh_manager
 from ..errors import error_reply, WAVES_CODE_103
-from ..renderer import render_role_card
+from .wwuid_renderer.card_drawer import render_role_card
 
 
 class QueryManager:
