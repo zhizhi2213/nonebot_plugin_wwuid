@@ -264,6 +264,20 @@ def get_character_template(role_id: int, role_name: str = "") -> Dict:
     
     return CHARACTER_TEMPLATES["default_dps"]
 
+def expected_damage(attack: float, crit_rate_pct: float, crit_dmg_pct: float, dmg_bonus_pct: float, mult: float = 1.0) -> Dict[str, float]:
+    """
+    简化伤害试算
+    返回:
+      - crit: 暴击伤害
+      - expect: 期望伤害
+    """
+    cr = max(0.0, min(crit_rate_pct / 100.0, 1.0))
+    cd = crit_dmg_pct / 100.0
+    db = dmg_bonus_pct / 100.0
+    base = attack * mult * (1.0 + db)
+    crit = base * (1.0 + cd)
+    expect = base * (1.0 + cr * cd)
+    return {"crit": round(crit, 2), "expect": round(expect, 2)}
 
 # 便捷函数
 def quick_calc_phantom(

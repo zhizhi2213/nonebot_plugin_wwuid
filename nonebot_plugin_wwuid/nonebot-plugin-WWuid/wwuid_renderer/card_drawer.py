@@ -28,6 +28,23 @@ from .utils import (
     get_chain_icon_sync, get_weapon_icon_sync
 )
 
+# ---- 布局常量（对齐源项目大致位置）----
+CANVAS_W = 1200
+HEADER_H = 160
+MARGIN_X = 50
+ROLE_X = 60
+ROLE_Y = HEADER_H + 30
+ROLE_W = 420
+ROLE_H = 680
+PROP_X = 560
+PROP_Y = ROLE_Y
+PROP_W = 600
+PROP_H = 480
+WEAPON_Y = PROP_Y + PROP_H + 30
+SKILL_Y = ROLE_Y + ROLE_H + 20
+CHAIN_Y = SKILL_Y + 160
+PHANTOM_Y = CHAIN_Y + 150
+
 
 # 颜色定义
 WHITE = (255, 255, 255, 255)
@@ -78,10 +95,10 @@ class RoleCardRenderer:
         role = role_detail.role
         
         # 计算卡片高度（根据内容动态调整）
-        card_height = 2000
+        card_height = max(PHANTOM_Y + 500, 1900)
         
         # 创建背景
-        img = get_waves_bg((1200, card_height))
+        img = get_waves_bg((CANVAS_W, card_height))
         
         # 绘制顶部信息栏（账号等级、世界等级等）
         self._draw_header_section(img, role_detail, account)
@@ -106,6 +123,8 @@ class RoleCardRenderer:
         
         # 添加页脚
         img = add_footer(img)
+        # 伤害试算
+        self._draw_damage_section(img, self._get_role_properties(role_detail, raw_detail))
         
         # 转换为字节
         buffer = io.BytesIO()
@@ -119,11 +138,11 @@ class RoleCardRenderer:
         # 顶部背景条 - 使用title_bar替代
         header_bg = load_resource_image("title_bar.png")
         if header_bg:
-            header_bg = header_bg.resize((1200, 120))
+            header_bg = header_bg.resize((CANVAS_W, HEADER_H))
             img.paste(header_bg, (0, 0), header_bg)
         else:
             # 使用纯色背景
-            header_overlay = Image.new('RGBA', (1200, 120), (30, 30, 40, 200))
+            header_overlay = Image.new('RGBA', (CANVAS_W, HEADER_H), (30, 30, 40, 200))
             img.paste(header_overlay, (0, 0), header_overlay)
         
         # 左侧账号信息：头像、昵称、UID
@@ -137,25 +156,25 @@ class RoleCardRenderer:
             except Exception:
                 avatar = None
             if avatar:
-                avatar = avatar.resize((80, 80))
-                mask = Image.new('L', (80, 80), 0)
+                avatar = avatar.resize((86, 86))
+                mask = Image.new('L', (86, 86), 0)
                 mdraw = ImageDraw.Draw(mask)
-                mdraw.ellipse([0, 0, 80, 80], fill=255)
-                img.paste(avatar, (20, 20), mask)
+                mdraw.ellipse([0, 0, 86, 86], fill=255)
+                img.paste(avatar, (MARGIN_X, 20), mask)
             # 名称与UID
             acc_name = account.get("name") or "—"
-            draw_text_with_shadow(img, acc_name, (120, 40), self.font_24, anchor="lm")
+            draw_text_with_shadow(img, acc_name, (MARGIN_X + 100, 40), self.font_24, anchor="lm")
             if uid:
-                draw_text_with_shadow(img, f"特征码: {uid}", (120, 70), self.font_16, anchor="lm")
+                draw_text_with_shadow(img, f"特征码: {uid}", (MARGIN_X + 100, 72), self.font_16, anchor="lm")
             # 账号等级与世界等级
             lvl = account.get("accountLevel")
             wl = account.get("worldLevel")
             lvl_text = f"Lv.{lvl}" if lvl is not None else "Lv.-"
             wl_text = f"Lv.{wl}" if wl is not None else "Lv.-"
-            draw_text_with_shadow(img, lvl_text, (950, 40), self.font_24, anchor="rm")
-            draw_text_with_shadow(img, "账号等级", (950, 65), self.font_14, anchor="rm")
-            draw_text_with_shadow(img, wl_text, (1100, 40), self.font_24, anchor="rm")
-            draw_text_with_shadow(img, "世界等级", (1100, 65), self.font_14, anchor="rm")
+            draw_text_with_shadow(img, lvl_text, (CANVAS_W - 230, 42), self.font_24, anchor="rm")
+            draw_text_with_shadow(img, "账号等级", (CANVAS_W - 230, 68), self.font_14, anchor="rm")
+            draw_text_with_shadow(img, wl_text, (CANVAS_W - 80, 42), self.font_24, anchor="rm")
+            draw_text_with_shadow(img, "世界等级", (CANVAS_W - 80, 68), self.font_14, anchor="rm")
 
         # 角色名称（左上角次级信息）
         role = role_detail.role
@@ -165,7 +184,7 @@ class RoleCardRenderer:
         
         draw_text_with_shadow(
             img, role_name,
-            (80, 120),
+            (ROLE_X, ROLE_Y - 30),
             self.font_36,
             anchor="lm"
         )
@@ -173,7 +192,7 @@ class RoleCardRenderer:
         # 等级
         draw_text_with_shadow(
             img, f"Lv.{role.level}",
-            (80, 155),
+            (ROLE_X, ROLE_Y),
             self.font_20,
             anchor="lm"
         )
@@ -182,13 +201,13 @@ class RoleCardRenderer:
         attr_icon = get_attribute_icon(role.attributeId or 1)
         if attr_icon:
             attr_icon = attr_icon.resize((40, 40))
-            img.paste(attr_icon, (300, 35), attr_icon)
+            img.paste(attr_icon, (ROLE_X + 220, ROLE_Y - 50), attr_icon)
         
         # 武器类型图标
         weapon_icon = get_weapon_type_icon(role.weaponTypeId or 1)
         if weapon_icon:
             weapon_icon = weapon_icon.resize((35, 35))
-            img.paste(weapon_icon, (350, 37), weapon_icon)
+            img.paste(weapon_icon, (ROLE_X + 270, ROLE_Y - 48), weapon_icon)
     
     def _draw_role_section(self, img: Image.Image, role_detail):
         """绘制角色信息区域（左侧立绘）"""
@@ -197,15 +216,15 @@ class RoleCardRenderer:
         # 角色立绘背景框 - 使用base_info_bg替代
         role_bg = load_resource_image("base_info_bg.png")
         if role_bg:
-            role_bg = role_bg.resize((450, 700))
-            img.paste(role_bg, (50, 150), role_bg)
+            role_bg = role_bg.resize((ROLE_W + 30, ROLE_H + 20))
+            img.paste(role_bg, (ROLE_X - 15, ROLE_Y - 10), role_bg)
         else:
             # 使用带边框的纯色背景
-            role_area = Image.new('RGBA', (450, 700), (40, 40, 50, 180))
-            img.paste(role_area, (50, 150), role_area)
+            role_area = Image.new('RGBA', (ROLE_W + 30, ROLE_H + 20), (40, 40, 50, 180))
+            img.paste(role_area, (ROLE_X - 15, ROLE_Y - 10), role_area)
             # 绘制边框
             draw = ImageDraw.Draw(img)
-            draw.rectangle([50, 150, 500, 850], outline=(100, 100, 120, 200), width=2)
+            draw.rectangle([ROLE_X - 15, ROLE_Y - 10, ROLE_X - 15 + ROLE_W + 30, ROLE_Y - 10 + ROLE_H + 20], outline=(100, 100, 120, 200), width=2)
         
         # 加载并显示角色立绘
         if hasattr(role, 'rolePicUrl') and role.rolePicUrl:
@@ -213,8 +232,8 @@ class RoleCardRenderer:
                 role_pic = get_role_picture_sync(role.rolePicUrl, role.roleId)
                 if role_pic:
                     # 调整立绘大小并居中显示
-                    role_pic = self._resize_role_picture(role_pic, (400, 650))
-                    img.paste(role_pic, (75, 175), role_pic)
+                    role_pic = self._resize_role_picture(role_pic, (ROLE_W, ROLE_H))
+                    img.paste(role_pic, (ROLE_X, ROLE_Y), role_pic)
             except Exception as e:
                 logger.warning(f"加载角色立绘失败: {e}")
         
@@ -225,12 +244,12 @@ class RoleCardRenderer:
             role_name = "漂泊者"
         
         # 绘制角色名背景
-        name_bg = Image.new('RGBA', (400, 60), (0, 0, 0, 150))
-        img.paste(name_bg, (75, 780), name_bg)
+        name_bg = Image.new('RGBA', (ROLE_W, 54), (0, 0, 0, 150))
+        img.paste(name_bg, (ROLE_X, ROLE_Y + ROLE_H - 54), name_bg)
         
         draw_text_with_shadow(
             img, f"{role_name} Lv.{role.level}",
-            (275, 810),
+            (ROLE_X + ROLE_W // 2, ROLE_Y + ROLE_H - 27),
             self.font_30,
             anchor="mm"
         )
@@ -265,19 +284,19 @@ class RoleCardRenderer:
         # 属性面板背景
         prop_bg = load_resource_image("prop_bg.png")
         if prop_bg:
-            prop_bg = prop_bg.resize((600, 500))
-            img.paste(prop_bg, (550, 150), prop_bg)
+            prop_bg = prop_bg.resize((PROP_W, PROP_H))
+            img.paste(prop_bg, (PROP_X, PROP_Y), prop_bg)
         
         # 获取属性数据
         props = self._get_role_properties(role_detail, raw_detail)
         
         # 绘制属性标题
-        draw.text((580, 170), "【属性】", font=self.font_24, fill=WHITE)
+        draw.text((PROP_X + 20, PROP_Y + 20), "【属性】", font=self.font_24, fill=WHITE)
         
         # 属性布局 - 两列
-        col1_x = 580
-        col2_x = 850
-        start_y = 210
+        col1_x = PROP_X + 20
+        col2_x = PROP_X + 320
+        start_y = PROP_Y + 60
         line_height = 45
         
         # 第一列属性
@@ -289,7 +308,7 @@ class RoleCardRenderer:
             # 属性名
             draw.text((col1_x, y), prop_name, font=self.font_20, fill=GREY)
             # 属性值
-            draw.text((col1_x + 120, y), str(value), font=self.font_20, fill=WHITE)
+            draw.text((col1_x + 140, y), str(value), font=self.font_20, fill=WHITE)
         
         # 第二列属性
         col2_props = ["暴击", "暴击伤害", "属性伤害加成", "治疗效果加成"]
@@ -300,7 +319,7 @@ class RoleCardRenderer:
             # 属性名
             draw.text((col2_x, y), prop_name, font=self.font_20, fill=GREY)
             # 属性值
-            draw.text((col2_x + 150, y), str(value), font=self.font_20, fill=WHITE)
+            draw.text((col2_x + 170, y), str(value), font=self.font_20, fill=WHITE)
     
     def _get_role_properties(self, role_detail, raw_detail: Optional[Dict] = None) -> Dict[str, str]:
         """获取角色属性数据"""
@@ -317,22 +336,53 @@ class RoleCardRenderer:
         if not raw_detail:
             return defaults
         collected = {}
-        def walk(obj):
-            if isinstance(obj, dict):
-                if "attributeName" in obj and "attributeValue" in obj:
-                    name = str(obj.get("attributeName"))
-                    val = str(obj.get("attributeValue"))
-                    if name and name in defaults and name not in collected:
-                        collected[name] = val
-                for v in obj.values():
-                    walk(v)
-            elif isinstance(obj, list):
-                for it in obj:
-                    walk(it)
-        walk(raw_detail)
+        panels = []
+        if isinstance(raw_detail, dict):
+            if "equipPhantomAddPropList" in raw_detail and isinstance(raw_detail["equipPhantomAddPropList"], list):
+                panels.extend(raw_detail["equipPhantomAddPropList"])
+            if "equipPhantomAttributeList" in raw_detail and isinstance(raw_detail["equipPhantomAttributeList"], list):
+                panels.extend(raw_detail["equipPhantomAttributeList"])
+        for item in panels:
+            try:
+                name = str(item.get("attributeName"))
+                val = str(item.get("attributeValue"))
+                if name in ["生命", "攻击", "防御", "共鸣效率", "暴击", "暴击伤害", "治疗效果加成"]:
+                    collected[name] = val
+                if name in ["衍射伤害加成", "湮灭伤害加成", "气动伤害加成", "热熔伤害加成", "冷凝伤害加成", "导电伤害加成"]:
+                    if "属性伤害加成" not in collected:
+                        collected["属性伤害加成"] = val
+            except Exception:
+                continue
         for k in defaults:
             defaults[k] = collected.get(k, defaults[k])
         return defaults
+
+    def _draw_damage_section(self, img: Image.Image, props: Dict[str, str]):
+        """绘制底部伤害试算"""
+        draw = ImageDraw.Draw(img)
+        y_base = img.height - 140
+        draw.rectangle([0, y_base - 10, img.width, img.height], fill=(20, 20, 30, 220))
+        try:
+            from ..utils.calculate import expected_damage
+        except ImportError:
+            from utils.calculate import expected_damage
+        def to_num(s, pct=False):
+            if not isinstance(s, str):
+                return 0.0
+            v = s.replace('%', '').strip()
+            try:
+                x = float(v)
+            except:
+                x = 0.0
+            return x
+        atk = to_num(props.get("攻击", "0"))
+        cr = to_num(props.get("暴击", "0%"))
+        cd = to_num(props.get("暴击伤害", "0%"))
+        db = to_num(props.get("属性伤害加成", "0%"))
+        result = expected_damage(atk, cr, cd, db, mult=1.0)
+        draw_text_with_shadow(img, "伤害试算", (50, y_base), self.font_24, anchor="lm")
+        draw_text_with_shadow(img, f"暴击伤害 {int(result['crit']):,}", (250, y_base), self.font_20, anchor="lm")
+        draw_text_with_shadow(img, f"期望伤害 {int(result['expect']):,}", (600, y_base), self.font_20, anchor="lm")
     
     def _draw_weapon_section(self, img: Image.Image, role_detail):
         """绘制武器区域"""
@@ -344,7 +394,7 @@ class RoleCardRenderer:
         draw = ImageDraw.Draw(img)
         
         # 武器区域背景
-        y_base = 680
+        y_base = WEAPON_Y
         
         # 标题
         draw.text((550, y_base), "【武器信息】", font=self.font_24, fill=WHITE)
@@ -405,7 +455,7 @@ class RoleCardRenderer:
             return
         
         draw = ImageDraw.Draw(img)
-        y_base = 880
+        y_base = SKILL_Y
         
         # 标题
         draw.text((50, y_base), "【技能】", font=self.font_24, fill=WHITE)
@@ -507,7 +557,7 @@ class RoleCardRenderer:
             return
         
         draw = ImageDraw.Draw(img)
-        y_base = 1050
+        y_base = CHAIN_Y
         
         # 标题
         draw.text((50, y_base), "【命座】", font=self.font_24, fill=WHITE)
@@ -582,7 +632,7 @@ class RoleCardRenderer:
             return
         
         draw = ImageDraw.Draw(img)
-        y_base = 1200
+        y_base = PHANTOM_Y
         
         # 标题
         draw.text((50, y_base), "【声骸】", font=self.font_24, fill=WHITE)

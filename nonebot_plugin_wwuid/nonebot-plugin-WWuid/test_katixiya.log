@@ -505,3 +505,102 @@ TypeError: render_role_card() got an unexpected keyword argument 'account'
 ============================================================
 2026-03-02 16:53:58,244 - INFO - ✓ 测试流程全部完成!
 2026-03-02 16:53:58,244 - INFO - ============================================================
+2026-03-02 17:06:51,386 - INFO - ============================================================
+2026-03-02 17:06:51,386 - INFO - 鸣潮角色练度卡片生成测试 - 使用真实 API 数据
+2026-03-02 17:06:51,387 - INFO - ============================================================
+2026-03-02 17:06:51,859 - INFO -   ✓ 核心模块导入成功
+2026-03-02 17:06:51,859 - INFO -   ✓ 输出目录: C:\work\data\git\nonebot_plugin_wwuid\nonebot_plugin_wwuid\nonebot-plugin-WWuid\plugin_debug_tests\output
+2026-03-02 17:06:54,968 - INFO - 
+[1/6] 正在请求访问令牌 (bat)...
+2026-03-02 17:06:55,113 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/roleBox/requestToken "HTTP/1.1 200 OK"
+2026-03-02 17:06:55,114 - INFO -   ✓ 获取访问令牌成功
+2026-03-02 17:06:55,114 - INFO - 
+[2/6] 正在获取账号列表（按游戏筛选）...
+2026-03-02 17:06:55,173 - INFO - HTTP Request: POST https://api.kurobbs.com/gamer/role/list "HTTP/1.1 200 OK"
+2026-03-02 17:06:55,173 - INFO -   ✓ 成功获取账号信息（游戏ID=3）
+2026-03-02 17:06:55,218 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/roleBox/akiBox/baseData "HTTP/1.1 200 OK"
+2026-03-02 17:06:55,218 - INFO - 
+[3/6] 正在获取已拥有角色列表（游戏内角色）...
+2026-03-02 17:06:55,271 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/calculator/ownedRole/roleInfo "HTTP/1.1 200 OK"
+2026-03-02 17:06:55,273 - WARNING -   ! 未在API返回中找到角色“卡提希娅”，使用映射表ID 1409
+2026-03-02 17:06:55,273 - INFO -   ✓ 目标角色: 卡提希娅 (角色ID: 1409)
+2026-03-02 17:06:55,273 - INFO - 
+[4/6] 正在获取角色详情数据...
+2026-03-02 17:06:55,430 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/roleBox/akiBox/getRoleDetail "HTTP/1.1 200 OK"
+2026-03-02 17:06:55,434 - INFO -   ✓ 成功解析角色详情数据
+2026-03-02 17:06:55,434 - INFO - 
+[5/6] 正在调用渲染引擎生成图片...
+2026-03-02 17:06:55,673 - INFO -   ✓ 图片渲染成功 (大小: 495.1 KB)
+2026-03-02 17:06:55,673 - INFO - 
+[6/6] 正在保存结果...
+2026-03-02 17:06:55,675 - INFO -   ✓ 图片已保存至: C:\work\data\git\nonebot_plugin_wwuid\nonebot_plugin_wwuid\nonebot-plugin-WWuid\plugin_debug_tests\output\卡提希娅_100276895_20260302_170655.png
+2026-03-02 17:06:55,679 - INFO - 
+============================================================
+2026-03-02 17:06:55,679 - INFO - ✓ 测试流程全部完成!
+2026-03-02 17:06:55,679 - INFO - ============================================================
+2026-03-02 17:09:23,185 - INFO - ============================================================
+2026-03-02 17:09:23,185 - INFO - 鸣潮角色练度卡片生成测试 - 使用真实 API 数据
+2026-03-02 17:09:23,185 - INFO - ============================================================
+2026-03-02 17:09:23,625 - INFO -   ✓ 核心模块导入成功
+2026-03-02 17:09:23,627 - INFO -   ✓ 输出目录: C:\work\data\git\nonebot_plugin_wwuid\nonebot_plugin_wwuid\nonebot-plugin-WWuid\plugin_debug_tests\output
+2026-03-02 17:09:26,266 - INFO - 
+[1/6] 正在请求访问令牌 (bat)...
+2026-03-02 17:09:26,414 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/roleBox/requestToken "HTTP/1.1 200 OK"
+2026-03-02 17:09:26,414 - INFO -   ✓ 获取访问令牌成功
+2026-03-02 17:09:26,414 - INFO - 
+[2/6] 正在获取账号列表（按游戏筛选）...
+2026-03-02 17:09:26,474 - INFO - HTTP Request: POST https://api.kurobbs.com/gamer/role/list "HTTP/1.1 200 OK"
+2026-03-02 17:09:26,474 - INFO -   ✓ 成功获取账号信息（游戏ID=3）
+2026-03-02 17:09:26,521 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/roleBox/akiBox/baseData "HTTP/1.1 200 OK"
+2026-03-02 17:09:26,522 - INFO - 
+[3/6] 正在获取已拥有角色列表（游戏内角色）...
+2026-03-02 17:09:26,576 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/calculator/ownedRole/roleInfo "HTTP/1.1 200 OK"
+2026-03-02 17:09:26,576 - WARNING -   ! 未在API返回中找到角色“卡提希娅”，使用映射表ID 1409
+2026-03-02 17:09:26,576 - INFO -   ✓ 目标角色: 卡提希娅 (角色ID: 1409)
+2026-03-02 17:09:26,577 - INFO - 
+[4/6] 正在获取角色详情数据...
+2026-03-02 17:09:26,714 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/roleBox/akiBox/getRoleDetail "HTTP/1.1 200 OK"
+2026-03-02 17:09:26,746 - INFO -   ✓ 成功解析角色详情数据
+2026-03-02 17:09:26,746 - INFO - 
+[5/6] 正在调用渲染引擎生成图片...
+2026-03-02 17:09:26,995 - INFO -   ✓ 图片渲染成功 (大小: 506.1 KB)
+2026-03-02 17:09:26,996 - INFO - 
+[6/6] 正在保存结果...
+2026-03-02 17:09:26,997 - INFO -   ✓ 图片已保存至: C:\work\data\git\nonebot_plugin_wwuid\nonebot_plugin_wwuid\nonebot-plugin-WWuid\plugin_debug_tests\output\卡提希娅_100276895_20260302_170926.png
+2026-03-02 17:09:27,001 - INFO - 
+============================================================
+2026-03-02 17:09:27,001 - INFO - ✓ 测试流程全部完成!
+2026-03-02 17:09:27,002 - INFO - ============================================================
+2026-03-02 17:14:48,267 - INFO - ============================================================
+2026-03-02 17:14:48,267 - INFO - 鸣潮角色练度卡片生成测试 - 使用真实 API 数据
+2026-03-02 17:14:48,267 - INFO - ============================================================
+2026-03-02 17:14:48,766 - INFO -   ✓ 核心模块导入成功
+2026-03-02 17:14:48,767 - INFO -   ✓ 输出目录: C:\work\data\git\nonebot_plugin_wwuid\nonebot_plugin_wwuid\nonebot-plugin-WWuid\plugin_debug_tests\output
+2026-03-02 17:14:51,384 - INFO - 
+[1/6] 正在请求访问令牌 (bat)...
+2026-03-02 17:14:51,536 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/roleBox/requestToken "HTTP/1.1 200 OK"
+2026-03-02 17:14:51,537 - INFO -   ✓ 获取访问令牌成功
+2026-03-02 17:14:51,537 - INFO - 
+[2/6] 正在获取账号列表（按游戏筛选）...
+2026-03-02 17:14:51,597 - INFO - HTTP Request: POST https://api.kurobbs.com/gamer/role/list "HTTP/1.1 200 OK"
+2026-03-02 17:14:51,598 - INFO -   ✓ 成功获取账号信息（游戏ID=3）
+2026-03-02 17:14:51,646 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/roleBox/akiBox/baseData "HTTP/1.1 200 OK"
+2026-03-02 17:14:51,646 - INFO - 
+[3/6] 正在获取已拥有角色列表（游戏内角色）...
+2026-03-02 17:14:51,707 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/calculator/ownedRole/roleInfo "HTTP/1.1 200 OK"
+2026-03-02 17:14:51,708 - WARNING -   ! 未在API返回中找到角色“卡提希娅”，使用映射表ID 1409
+2026-03-02 17:14:51,708 - INFO -   ✓ 目标角色: 卡提希娅 (角色ID: 1409)
+2026-03-02 17:14:51,709 - INFO - 
+[4/6] 正在获取角色详情数据...
+2026-03-02 17:14:51,842 - INFO - HTTP Request: POST https://api.kurobbs.com/aki/roleBox/akiBox/getRoleDetail "HTTP/1.1 200 OK"
+2026-03-02 17:14:51,880 - INFO -   ✓ 成功解析角色详情数据
+2026-03-02 17:14:51,880 - INFO - 
+[5/6] 正在调用渲染引擎生成图片...
+2026-03-02 17:14:52,107 - INFO -   ✓ 图片渲染成功 (大小: 519.7 KB)
+2026-03-02 17:14:52,108 - INFO - 
+[6/6] 正在保存结果...
+2026-03-02 17:14:52,110 - INFO -   ✓ 图片已保存至: C:\work\data\git\nonebot_plugin_wwuid\nonebot_plugin_wwuid\nonebot-plugin-WWuid\plugin_debug_tests\output\卡提希娅_100276895_20260302_171452.png
+2026-03-02 17:14:52,113 - INFO - 
+============================================================
+2026-03-02 17:14:52,114 - INFO - ✓ 测试流程全部完成!
+2026-03-02 17:14:52,114 - INFO - ============================================================
